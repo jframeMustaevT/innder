@@ -31,7 +31,7 @@ public class UserRepository {
   public sts.innopolis.university.inner.domain.User findByUsername(String username) {
     User user = template.queryForObject(
         "SELECT id, username, password, enabled, account_non_expired, account_non_locked, credentials_non_expired FROM users WHERE username = :username", // :username - это именованный параметр
-
+        // key - :username (но без двоеточия)
         Map.of("username", username),
         new RowMapper<User>() {
           @Override
