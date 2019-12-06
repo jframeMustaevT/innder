@@ -1,4 +1,4 @@
-package sts.innopolis.university.inner.repository;
+package sts21.innopolis.university.innder.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;
@@ -9,7 +9,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Repository;
-import sts.innopolis.university.inner.domain.User;
+import sts21.innopolis.university.innder.domain.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collections;
@@ -28,7 +28,7 @@ public class UserRepository {
 //    this.template = template;
 //  }
 
-  public sts.innopolis.university.inner.domain.User findByUsername(String username) {
+  public User findByUsername(String username) {
     User user = template.queryForObject(
         "SELECT id, username, password, enabled, account_non_expired, account_non_locked, credentials_non_expired FROM users WHERE username = :username", // :username - это именованный параметр
         // key - :username (но без двоеточия)

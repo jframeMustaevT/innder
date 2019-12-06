@@ -1,10 +1,10 @@
-package sts.innopolis.university.inner;
+package sts21.innopolis.university.innder;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class InnerApplicationTests {
+class InnderApplicationTests {
 
     @Test
     void contextLoads() {

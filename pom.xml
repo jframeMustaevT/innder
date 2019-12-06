@@ -8,10 +8,10 @@
         <version>2.2.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>sts.innopolis.university</groupId>
-    <artifactId>inner</artifactId>
+    <groupId>sts21.innopolis.university</groupId>
+    <artifactId>innder</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>inner</name>
+    <name>innder</name>
     <description>Graduation project for Spring Boot</description>
 
     <properties>

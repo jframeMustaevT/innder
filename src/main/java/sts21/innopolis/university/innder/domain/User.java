@@ -1,4 +1,4 @@
-package sts.innopolis.university.inner.domain;
+package sts21.innopolis.university.innder.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

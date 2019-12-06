@@ -1,4 +1,4 @@
-package sts.innopolis.university.inner.service;
+package sts21.innopolis.university.innder.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sts.innopolis.university.inner.domain.Registration;
-import sts.innopolis.university.inner.domain.User;
-import sts.innopolis.university.inner.repository.UserRepository;
+import sts21.innopolis.university.innder.domain.Registration;
+import sts21.innopolis.university.innder.domain.User;
+import sts21.innopolis.university.innder.repository.UserRepository;
 
 import java.util.List;
 

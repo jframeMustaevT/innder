@@ -1,11 +1,11 @@
-package sts.innopolis.university.inner.controller;
+package sts21.innopolis.university.innder.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import sts.innopolis.university.inner.domain.Registration;
-import sts.innopolis.university.inner.service.UserService;
+import sts21.innopolis.university.innder.domain.Registration;
+import sts21.innopolis.university.innder.service.UserService;
 
 @Controller
 @RequiredArgsConstructor
