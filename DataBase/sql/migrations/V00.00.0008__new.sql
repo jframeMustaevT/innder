@@ -1,12 +1,16 @@
 CREATE TABLE "user" (
-                        "id" serial NOT NULL UNIQUE,
-                        "email" TEXT NOT NULL UNIQUE,
-                        "password" TEXT NOT NULL,
-                        "phone" integer  NOT NULL,
-                        "telegram_name" TEXT NOT NULL,
-                        "status" TEXT NOT NULL,
-                        "firs_name" TEXT NOT NULL,
-                        "last_name" TEXT,
+                        "id"                    serial              NOT NULL UNIQUE,
+                        "email"                 TEXT                NOT NULL UNIQUE,
+                        "password"              TEXT                NOT NULL,
+                        "phone"                 int                 NOT NULL,
+                        "telegram_name"         TEXT                NOT NULL,
+                        "status"                TEXT                NOT NULL,
+                        "firs_name"             TEXT                NOT NULL,
+                        "last_name"             TEXT,
+                        enabled                 BOOLEAN             NOT NULL DEFAULT TRUE, -- включен ли аккаунт
+                        account_non_expired     BOOLEAN             NOT NULL DEFAULT TRUE, -- время действия аккаунта не истекло
+                        account_non_locked      BOOLEAN             NOT NULL DEFAULT TRUE, -- аккаунт не заблокирован
+                        credentials_non_expired BOOLEAN             NOT NULL DEFAULT TRUE,  -- не истекло ли время действия пароля
                         CONSTRAINT "user_pk" PRIMARY KEY ("id")
 ) WITH (
       OIDS=FALSE
@@ -15,10 +19,10 @@ CREATE TABLE "user" (
 
 
 CREATE TABLE "user_score" (
-                              "id" serial NOT NULL,
-                              "user_id" bigint NOT NULL,
-                              "score" int,
-                              "count" int DEFAULT '1',
+                              "id"          serial NOT NULL,
+                              "user_id"     bigint NOT NULL,
+                              "score"       int,
+                              "count"       int DEFAULT '1',
                               CONSTRAINT "user_score_pk" PRIMARY KEY ("id")
 ) WITH (
       OIDS=FALSE
@@ -27,7 +31,7 @@ CREATE TABLE "user_score" (
 
 
 CREATE TABLE "user_ban" (
-                            "id" serial NOT NULL,
+                            "id"        serial NOT NULL,
                             "banner_id" bigint NOT NULL,
                             "banned_id" bigint NOT NULL,
                             CONSTRAINT "user_ban_pk" PRIMARY KEY ("id")
@@ -38,17 +42,17 @@ CREATE TABLE "user_ban" (
 
 
 CREATE TABLE "trip" (
-                        "id" serial NOT NULL,
-                        "owner_id" bigint NOT NULL,
-                        "start_data_time" TIMESTAMP,
-                        "finish_data_time" TIMESTAMP,
-                        "status" bigint NOT NULL,
-                        "type" bigint,
-                        "description" TEXT,
-                        "cost" TEXT,
-                        "vehicle" TEXT,
-                        "rout" bigserial,
-                        CONSTRAINT "trip_pk" PRIMARY KEY ("id")
+                        "id"                    serial NOT NULL,
+                        "owner_id"              bigint NOT NULL,
+                        "start_data_time"       TIMESTAMP,
+                        "finish_data_time"      TIMESTAMP,
+                        "status"                bigint NOT NULL,
+                        "type"                  bigint,
+                        "description"           TEXT,
+                        "cost"                  TEXT,
+                        "vehicle"               TEXT,
+                        "rout"                  bigserial,
+                        CONSTRAINT "trip_pk"    PRIMARY KEY ("id")
 ) WITH (
       OIDS=FALSE
     );
@@ -57,9 +61,7 @@ CREATE TABLE "trip" (
 
 CREATE TABLE "trip_status" (
                                "id" serial NOT NULL,
-                               "trip_status_1" TEXT,
-                               "trip_status_2" TEXT,
-                               "trip_status_3" TEXT,
+                               "trip_status" TEXT,
                                CONSTRAINT "trip_status_pk" PRIMARY KEY ("id")
 ) WITH (
       OIDS=FALSE
@@ -70,9 +72,6 @@ CREATE TABLE "trip_status" (
 CREATE TABLE "trip_type" (
                              "id" serial NOT NULL,
                              "trip_type" TEXT,
-                             "trip_type_2" TEXT,
-                             "trip_type_3" TEXT,
-                             "trip_type_4" TEXT,
                              CONSTRAINT "trip_type_pk" PRIMARY KEY ("id")
 ) WITH (
       OIDS=FALSE
@@ -93,10 +92,12 @@ CREATE TABLE "score" (
 
 CREATE TABLE "rout" (
                         "id" serial NOT NULL,
-                        "start_longitude" bigint NOT NULL,
-                        "start_latude" bigint NOT NULL,
-                        "end_longitude" bigint,
-                        "end_latude" bigint,
+                        "start_city" bigint NOT NULL,
+                        "start_street" bigint NOT NULL,
+                        "start_build" bigint NOT NULL,
+                        "end_city" bigint,
+                        "end_street" bigint,
+                        "end_build" bigint,
                         CONSTRAINT "rout_pk" PRIMARY KEY ("id")
 ) WITH (
       OIDS=FALSE
