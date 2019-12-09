@@ -2,10 +2,10 @@ CREATE TABLE "user" (
                         id                    serial              NOT NULL UNIQUE,
                         email                 TEXT                NOT NULL UNIQUE,
                         password              TEXT                NOT NULL,
-                        phone                 int                 NOT NULL,
-                        telegram_name         TEXT                NOT NULL,
-                        status                TEXT                NOT NULL,
-                        firs_name             TEXT                NOT NULL,
+                        phone                 TEXT                 NOT NULL,
+                        telegram_name         TEXT                 NULL,
+                        status                INT                NOT NULL,
+                        first_name            TEXT                NOT NULL,
                         last_name             TEXT,
                         enabled                 BOOLEAN             NOT NULL DEFAULT TRUE, -- включен ли аккаунт
                         account_non_expired     BOOLEAN             NOT NULL DEFAULT TRUE, -- время действия аккаунта не истекло
@@ -22,8 +22,16 @@ CREATE TABLE user_score (
                               id          serial NOT NULL,
                               user_id     bigint NOT NULL,
                               score       int,
-                              count       int DEFAULT '1',
+                              count       int CHECK ( count > 0 ),
                               CONSTRAINT user_score_pk PRIMARY KEY (id)
+) WITH (
+      OIDS=FALSE
+    );
+
+CREATE TABLE user_status (
+                            id          serial NOT NULL,
+                            user_status     TEXT NOT NULL,
+                            CONSTRAINT user_score_pk PRIMARY KEY (id)
 ) WITH (
       OIDS=FALSE
     );
@@ -73,6 +81,7 @@ CREATE TABLE score (
                          id serial NOT NULL,
                          from_user_id serial NOT NULL,
                          to_user_id serial NOT NULL,
+                         score int  NULL CHECK (5 < score.score < 1  ),
                          CONSTRAINT score_pk PRIMARY KEY (id)
 ) WITH (
       OIDS=FALSE
@@ -125,4 +134,6 @@ ALTER TABLE score ADD CONSTRAINT score_fk1 FOREIGN KEY (to_user_id) REFERENCES "
 
 ALTER TABLE companion ADD CONSTRAINT companion_fk0 FOREIGN KEY (trip_id) REFERENCES trip(id);
 ALTER TABLE companion ADD CONSTRAINT companion_fk1 FOREIGN KEY (user_id) REFERENCES "user"(id);
+
+ALTER TABLE  "user" ADD CONSTRAINT user_status._fk0 FOREIGN KEY  (user_status) REFERENCES user_status(id);
 
