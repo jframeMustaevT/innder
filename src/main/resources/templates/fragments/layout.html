@@ -12,17 +12,17 @@
     <form
             data-th-if="${#authorization.expression('isAuthenticated()')}"
             data-th-action="@{/logout}" method="post">
-        <button>Выйти</button>
+        <input class="btn btn-danger" type="submit" value="Выйти">
     </form>
 </div>
 <div data-th-fragment="registerFragment">
     <a
             data-th-if="${#authorization.expression('isAnonymous()')}"
-            data-th-href="@{/register}">Регистрация</a>
+            data-th-href="@{/register}"><input class="btn btn-primary" type="button" value="Регистрация"></a>
 </div>
 <div data-th-fragment="loginFragment">
     <a data-th-if="${#authorization.expression('isAnonymous()')}"
-       data-th-href="@{/login}">Войти</a>
+       data-th-href="@{/login}"><input class="btn btn-primary" type="button" value="Войти"></a>
 </div>
 <div data-th-fragment="adminFragment">
 

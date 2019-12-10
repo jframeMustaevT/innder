@@ -6,17 +6,53 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Регистрация</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body>
-<!--  место для вывода ошибки -->
-<div data-th-if="error">
-    [[ ${error} ]]
+<!-- Registration Form -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+<div class="ui-form">
+    <h3 class="text-center">Регистрация</h3>
+    <!--  место для вывода ошибки -->
+    <div data-th-if="error">
+        [[ ${error} ]]
+    </div>
+    <form data-th-action="@{/register}" method="post">
+        <!-- Name -->
+        <div class="form-group">
+            <label for=>Email address</label>
+            <input name="username"  class="form-control" placeholder="email" required>
+
+        </div>
+        <!-- Email -->
+        <div class="form-group">
+            <label for=>Пароль</label>
+            <input name="password" class="form-control" type="password"  aria-describedby="emailHelp" placeholder="Пароль" required>
+        </div>
+        <!-- Password -->
+        <div class="form-group">
+            <label for=>Подтверждение пароля</label>
+            <input name="confirm" class="form-control" type="password" placeholder="Подтверждение пароля" required>
+        </div>
+        <div class="text-center"><button type="submit" class="btn btn-success">Регистрация</button></div>
+    </form>
+    <div class="text-center white">OR</div>
+    <h3 class="text-center">Sign Up Using</h3>
+    <!-- Social media -->
+    <div class="social">
+        <span style='padding-left:30px;'> </span>
+        <a href="/" class="facebook"><i class="fab fa-facebook-square"></i>Login with Facebook</a><span style='padding-left:70px;'> </span>
+        <a href="/" class="google-plus"><i class="fab fa-google-plus-square"></i>Login with Google Plus</a>
+    </div>
+    </div>
+    </div>
+        <div class="col-md-6">
+    </div>
 </div>
-<form data-th-action="@{/register}" method="post">
-    <input name="username" placeholder="Логин" required>
-    <input name="password" type="password" placeholder="Пароль" required>
-    <input name="confirm" type="password" placeholder="Подтверждение пароля" required>
-    <button>Регистрация</button>
-</form>
+</div>
+
 </body>
 </html>

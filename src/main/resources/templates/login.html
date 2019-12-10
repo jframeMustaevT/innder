@@ -6,18 +6,63 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Вход</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 </head>
+
 <body>
+
+<!-- UI # -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+                <!-- Login Form -->
+                <div class="ui-form">
+                    <h3 class="text-center">Welcome to Innder</h3>
+                    <h2 class="text-center">Sign in</h2>
+
+                    <div data-th-if="register">
+                        Вы успешно зарегистрировались. Войдите, используя ваш логин и пароль.
+                    </div>
+                    <form data-th-action="@{/login}" method="post">
+                        <!-- Email -->
+                        <div class="form-group">
+                            <input name="username" class="form-control" placeholder="email" required>
+                        </div>
+                        <!-- Password -->
+                        <div class="form-group">
+                            <input name="password" class="form-control" placeholder="Пароль" required>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> Remember Me
+                            </label>
+                        </div>
+                        <div class="text-center"><button  type="submit" class="btn btn-success">войти</button></div>
+                    </form>
+                    <div class="text-center white">OR</div>
+                    <h3 class="text-center">Sign In Using</h3>
+                    <!-- Social media -->
+                    <div class="social">
+                        <span style='padding-left:30px;'> </span><a href="/" class="facebook"><i class="fab fa-facebook-square"></i>Login with Facebook</a><span style='padding-left:70px;'> </span>
+                        <a href="/" class="google-plus"><i class="fab fa-google-plus-square"></i>Login with Google Plus</a>
+                    </div>
+            </div>
+
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
 <div data-th-if="error">
     Ошибка: [[ ${error} ]]
-</div>
-<div data-th-if="register">
-    Вы успешно зарегистрировались. Войдите, используя ваш логин и пароль.
-</div>
-<form data-th-action="@{/login}" method="post">
-    <input name="username" placeholder="Логин" required>
-    <input name="password" type="password" placeholder="Пароль" required>
-    <button>Вход</button>
-</form>
+-->
 </body>
 </html>
