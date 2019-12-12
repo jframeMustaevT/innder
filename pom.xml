@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>DataBase</module>
+        <module>TelegramBot</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
