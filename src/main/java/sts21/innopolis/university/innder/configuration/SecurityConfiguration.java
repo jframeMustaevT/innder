@@ -19,12 +19,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   public void configure(WebSecurity web) throws Exception {
     web
             .ignoring()
-            .antMatchers("/static/**")
+            .antMatchers("/resources/**")
+            .antMatchers("/login/**")
             .antMatchers("/css/**")
             .antMatchers("/fonts/**")
             .antMatchers("/images/**")
-            .antMatchers("/js/**")
-            .antMatchers("/vendor/**");
+            .antMatchers("/js/**");
+
   }
 
   @Override
@@ -34,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
           // на главную можно всем
           .antMatchers("/").permitAll()
+            .antMatchers("/css/**", "/js/**").permitAll()
           // на регистрацию - только неаутентифицированным
           .antMatchers("/register").anonymous()
 
