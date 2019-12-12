@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<HEAD>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial scale = 1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google Map Api </title>
+</HEAD>
+<style>
+    #map {
+        height: 400px;
+        width: 800px;
+    }
+
+    #addressCityStart {
+        width: 350px;
+        height: 13px;
+    }
+
+    #addressStreetEnd {
+        width: 350px;
+        height: 13px;
+
+    }
+
+    #addressStreetStart {
+        width: 350px;
+        height: 13px;
+        margin-right: 150px;
+    }
+
+    #addressCityEnd {
+        width: 350px;
+        height: 13px;
+        margin-left: 150px
+
+    }
+
+    #addressStreetNumberEnd {
+        width: 250px;
+        height: 13px;
+        margin-left: 250px
+    }
+
+    #addressStreetNumberStart {
+        width: 250px;
+        height: 13px;
+
+    }
+
+    #buttonConfirmRoute {
+        display: block;
+    }
+
+    #buttonRoute {
+
+    }
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .modal2 {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    }
+
+    .modal-content2 {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .close2 {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close2:hover,
+    .close2:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+<body>
+<h1>My Google Map</h1>
+<div id="myModalType" class="modal2">
+    <div class="modal-content2">
+        <span class="close2">&times;</span>
+        <p>Введенные данные содержат ошибки, недействительны, либо необходимые поля не заполнены. Проверьте их.</p>
+    </div>
+</div>
+<div id="myModalEmpty" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Ошбика! Создайте свой маршрут перед продолжением.</p>
+    </div>
+</div>
+
+<div id="map"></div>
+Начало пути:
+Конец пути:<br>
+<form id="form">
+    <input id="addressCityStart" name="addressCityStart" type="textbox" placeholder="Введите город (обязательное поле)"
+           required/>
+    <input id="addressCityEnd" name="addressCityEnd" type="textbox" placeholder="Введите город (обязательное поле)"
+           required/><br>
+    <input id="addressStreetStart" type="textbox" placeholder="Введите улицу и ее номер (необязательное поле)"/>
+    <input id="addressStreetEnd" type="textbox" placeholder="Введите улицу и ее номер (необязательное поле)"/><br>
+    <input id="addressStreetNumberStart" type="textbox" placeholder="Номер улицы (необязательное поле)"/>
+    <input id="addressStreetNumberEnd" type="textbox" placeholder="Номер улицы (необязательное поле)"/><br>
+    <input id="buttonRoute" type="button" value="Построить маршрут"/><br>
+    <input id="buttonConfirmRoute" type="button" value="Потвердить маршрут"/>
+
+</form>
+
+<script>
+
+    var map;
+    var geocoder;
+
+    function redirectToNext() {
+        if (counter === true){
+        window.location.href('create-trip.html');
+    }else{
+            modalEmptyFields.style.display = "block";
+        }
+    }
+
+    function initMap() {
+        var directionsService = new google.maps.DirectionsService();
+        var directionsRenderer = new google.maps.DirectionsRenderer();
+        geocoder = new google.maps.Geocoder();
+        var options = {
+            zoom: 15,
+            center: {lat: 55.752571, lng: 48.744153},
+            styles: [
+                {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+                {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+                {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+                {
+                    featureType: 'administrative.locality',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#d59563'}]
+                },
+                {
+                    featureType: 'poi',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#d59563'}]
+                },
+                {
+                    featureType: 'poi.park',
+                    elementType: 'geometry',
+                    stylers: [{color: '#263c3f'}]
+                },
+                {
+                    featureType: 'poi.park',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#6b9a76'}]
+                },
+                {
+                    featureType: 'road',
+                    elementType: 'geometry',
+                    stylers: [{color: '#38414e'}]
+                },
+                {
+                    featureType: 'road',
+                    elementType: 'geometry.stroke',
+                    stylers: [{color: '#212a37'}]
+                },
+                {
+                    featureType: 'road',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#9ca5b3'}]
+                },
+                {
+                    featureType: 'road.highway',
+                    elementType: 'geometry',
+                    stylers: [{color: '#746855'}]
+                },
+                {
+                    featureType: 'road.highway',
+                    elementType: 'geometry.stroke',
+                    stylers: [{color: '#1f2835'}]
+                },
+                {
+                    featureType: 'road.highway',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#f3d19c'}]
+                },
+                {
+                    featureType: 'transit',
+                    elementType: 'geometry',
+                    stylers: [{color: '#2f3948'}]
+                },
+                {
+                    featureType: 'transit.station',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#d59563'}]
+                },
+                {
+                    featureType: 'water',
+                    elementType: 'geometry',
+                    stylers: [{color: '#17263c'}]
+                },
+                {
+                    featureType: 'water',
+                    elementType: 'labels.text.fill',
+                    stylers: [{color: '#515c6d'}]
+                },
+                {
+                    featureType: 'water',
+                    elementType: 'labels.text.stroke',
+                    stylers: [{color: '#17263c'}]
+                }
+            ]
+        };
+        map = new google.maps.Map(document.getElementById("map"), options);
+        directionsRenderer.setMap(map);
+        document.getElementById('buttonRoute').addEventListener('click', function () {
+            calculateAndDisplayRoute(directionsService, directionsRenderer);
+
+        });
+        document.getElementById('buttonConfirmRoute').addEventListener('click', function () {
+            redirectToNext();
+        });
+    }
+
+    var modalInvalidType = document.getElementById("myModalType");
+    var modalEmptyFields = document.getElementById("myModalEmpty");
+
+
+    var span = document.getElementsByClassName("close")[0];
+    var span2 = document.getElementsByClassName("close2")[0];
+
+    var counter = false;
+
+    span.onclick = function () {
+        modalEmptyFields.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+        if (event.target === modalEmptyFields) {
+            modalEmptyFields.style.display = "none";
+        }
+    };
+
+    span2.onclick = function () {
+        modalInvalidType.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+        if (event.target === modalInvalidType) {
+            modalInvalidType.style.display = "none";
+        }
+    };
+
+    function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+        var s = document.getElementById('addressCityStart').value;
+        var e = document.getElementById('addressCityEnd').value;
+        var ss = document.getElementById('addressStreetStart').value;
+        var se = document.getElementById('addressStreetEnd').value;
+        var ssn = document.getElementById('addressStreetNumberStart').value;
+        var sen = document.getElementById('addressStreetNumberEnd').value;
+        if (!isNaN(e) || !isNaN(s) || (se !=='' && !isNaN(se)) || (ss !=='' && !isNaN(ss)) || isNaN(ssn) || isNaN(sen)) {
+            modalInvalidType.style.display = "block";
+            return false;
+        }
+
+        if ((e || e !== '') && (s || s !== '')) {
+            var start = s + '' + ss + '' + ssn;
+            var end = e + '' + se + '' + sen;
+            localStorage.setItem("StarLoc",start);
+            localStorage.setItem("EndLoc", end);
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: 'DRIVING'
+            };
+        } else {
+            return;
+        }
+        directionsService.route(request, function (result, status) {
+            if (status === 'OK') {
+                directionsRenderer.setDirections(result);
+                counter=true;
+            } else {
+                modalInvalidType.style.display = "block";
+            }
+        });
+    }
+
+
+
+</script>
+
+<script
+        async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBtzvGgZp_TyiIsUWDNqI-lQuajA_xCj3A&callback=initMap"></script>
+</body>
+<html>
