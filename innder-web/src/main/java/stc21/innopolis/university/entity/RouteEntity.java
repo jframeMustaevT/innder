@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "route")
-public class Route {
+public class RouteEntity {
 
     @Id
     @Column(name = "id", nullable = false)
@@ -19,22 +19,22 @@ public class Route {
     @Column(name = "endcity", nullable = false)
     private String endcity;
 
-    @Column(name = "startstreet", nullable = false)
+    @Column(name = "startstreet")
     private String startstreet;
 
-    @Column(name = "endstreet", nullable = false)
+    @Column(name = "endstreet")
     private String endstreet;
 
-    @Column(name = "streetnumberstart", nullable = false)
+    @Column(name = "streetnumberstart")
     private String streetnumberstart;
 
-    @Column(name = "streetnumberend", nullable = false)
+    @Column(name = "streetnumberend")
     private String streetnumberend;
 
-    public Route() {
+    public RouteEntity() {
     }
 
-    public Route(String startcity, String endcity, String startstreet, String endstreet, String streetnumberstart, String streetnumberend) {
+    public RouteEntity(String startcity, String endcity, String startstreet, String endstreet, String streetnumberstart, String streetnumberend) {
         this.startcity = startcity;
         this.endcity = endcity;
         this.startstreet = startstreet;
@@ -103,7 +103,7 @@ public class Route {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Route route = (Route) o;
+        RouteEntity route = (RouteEntity) o;
         return Objects.equals(id, route.id);
     }
 
