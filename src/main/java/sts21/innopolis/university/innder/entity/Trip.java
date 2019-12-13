@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-
+import java.util.List;
 @Entity
 @Table (name = "trip")
 @Getter
@@ -12,21 +12,19 @@ import javax.persistence.*;
 public class Trip {
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue (generator = "TRIP-GENERATOR", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "TRIP_GENERATOR", allocationSize = 1, sequenceName = "trip_id_seq")
     private  long id;
 
     @Column(name = "start_data_time")
     private  long StartDataTime;
 
-    @Column(name = "finish_data)time")
+    @Column(name = "finish_data_time")
     private  long FinishDataTime;
 
-    @OneToOne(targetEntity = TripStatus.class)
-    @JoinColumn(name = "status")
-    private status status;
-
-    @Column(name = "type_trip")
-    private long TypeTrip;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "trip_status_id")
+    private List<TripStatus> status;
 
     @Column(name = "descrpition")
     private String Descriptin;
