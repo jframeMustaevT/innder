@@ -7,6 +7,7 @@
     <title>Google Map Api </title>
 </HEAD>
 <style>
+
     #map {
         height: 400px;
         width: 800px;
@@ -54,6 +55,24 @@
 
     #buttonRoute {
 
+    }
+    pre.tab{
+        font-family: "Times New Roman";
+        font-size: medium;
+    }
+    .buttonRoute {
+        background-color: #4CAF50;
+        color: black;
+        border: 2px solid black ;
+        border-radius: 2px
+    }
+
+
+    .buttonConfirmRoute {
+        background-color: #4CAF50;
+        color: black;
+        border: 2px solid black;
+        border-radius: 2px
     }
 
     .modal {
@@ -140,13 +159,16 @@
 <div id="myModalEmpty" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <p>Ошбика! Создайте свой маршрут перед продолжением.</p>
+        <p>Ошибка! Создайте свой маршрут перед продолжением.</p>
     </div>
+
 </div>
 
 <div id="map"></div>
-Начало пути:
-Конец пути:<br>
+<div id="right-panel">
+    Дистанция маршрута: <span id="total"></span>
+</div>
+<pre class="tab">Начало пути:                                                                                                         Конец пути:</pre>
 <form id="form">
     <input id="addressCityStart" name="addressCityStart" type="textbox" placeholder="Введите город (обязательное поле)"
            required/>
@@ -156,27 +178,51 @@
     <input id="addressStreetEnd" type="textbox" placeholder="Введите улицу и ее номер (необязательное поле)"/><br>
     <input id="addressStreetNumberStart" type="textbox" placeholder="Номер улицы (необязательное поле)"/>
     <input id="addressStreetNumberEnd" type="textbox" placeholder="Номер улицы (необязательное поле)"/><br>
-    <input id="buttonRoute" type="button" value="Построить маршрут"/><br>
-    <input id="buttonConfirmRoute" type="button" value="Потвердить маршрут"/>
+    <input id="buttonRoute" type="button" class="buttonRoute"  value="Построить маршрут"/><br>
+    <input id="buttonConfirmRoute" type="button" class="buttonConfirmRoute" value="Подтвердить маршрут"/>
 
 </form>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
 
     var map;
     var geocoder;
+    var s ;
+    var e ;
+    var ss;
+    var se ;
+    var ssn ;
+    var sen ;
 
     function redirectToNext() {
-        if (counter === true){
-        window.location.href('create-trip.html');
-    }else{
-            modalEmptyFields.style.display = "block";
+
+        if (counter){
+            axios({
+                method: 'post',
+                url: '/create-route',
+                data: {
+                    startcity: s,
+                    endcity: e,
+                    startstreet: ss,
+                    endstreet: se,
+                    streetnumberstart: ssn,
+                    streetnumberend: sen
+                }
+            }).then(response => {
+                alert(response.data);
+            });
+            // window.location.replace('create-trip.html');
+        }else{
+            modalEmptyFields.style.display = "block"
         }
     }
 
     function initMap() {
         var directionsService = new google.maps.DirectionsService();
         var directionsRenderer = new google.maps.DirectionsRenderer();
+        panel: document.getElementById('right-panel');
         geocoder = new google.maps.Geocoder();
         var options = {
             zoom: 15,
@@ -303,12 +349,13 @@
     };
 
     function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-        var s = document.getElementById('addressCityStart').value;
-        var e = document.getElementById('addressCityEnd').value;
-        var ss = document.getElementById('addressStreetStart').value;
-        var se = document.getElementById('addressStreetEnd').value;
-        var ssn = document.getElementById('addressStreetNumberStart').value;
-        var sen = document.getElementById('addressStreetNumberEnd').value;
+        panel: document.getElementById('right-panel');
+        s = document.getElementById('addressCityStart').value;
+        e = document.getElementById('addressCityEnd').value;
+        ss = document.getElementById('addressStreetStart').value;
+        se = document.getElementById('addressStreetEnd').value;
+        ssn = document.getElementById('addressStreetNumberStart').value;
+        sen = document.getElementById('addressStreetNumberEnd').value;
         if (!isNaN(e) || !isNaN(s) || (se !=='' && !isNaN(se)) || (ss !=='' && !isNaN(ss)) || isNaN(ssn) || isNaN(sen)) {
             modalInvalidType.style.display = "block";
             return false;
@@ -334,6 +381,13 @@
             } else {
                 modalInvalidType.style.display = "block";
             }
+            var total = 0;
+            var myroute = result.routes[0];
+            for (var i = 0; i < myroute.legs.length; i++) {
+                total += myroute.legs[i].distance.value;
+            }
+            total = total / 1000;
+            document.getElementById('total').innerHTML = total + ' км';
         });
     }
 
