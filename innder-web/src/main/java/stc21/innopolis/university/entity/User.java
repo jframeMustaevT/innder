@@ -1,4 +1,4 @@
-package sts21.innopolis.university.innder.entity;
+package stc21.innopolis.university.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,31 +30,31 @@ public class User {
     private String email;
 
     @Column (name = "phone", nullable = false)
-    private int Phone;
+    private int phone;
 
     @Column (name = "telegram_name")
-    private String TelegramName;
+    private String telegramName;
 
     @Column (name = "status", nullable = false)
-    private String Status;
+    private String status;
 
     @Column (name = "first_name", nullable = false)
-    private String FirstName;
+    private String firstName;
 
     @Column (name = "last_name")
-    private String LastName;
+    private String lastName;
 
     @Column (name = "enable", nullable = false) //columnDefinition = true
-    private boolean Enable ; // =true
+    private boolean enable ; // =true
 
     @Column (name = "account_non_expired", nullable = false)
-    private boolean AccountNonExpired ; // =true
+    private boolean accountNonExpired ; // =true
 
     @Column (name = "account_non_locked", nullable = false)
-    private boolean AccountNonLocked ; // =true
+    private boolean accountNonLocked ; // =true
 
     @Column (name = "credentials_non_expired", nullable = false)
-    private boolean CredentialsNonExpired ; // =true
+    private boolean credentialsNonExpired ; // =true
 
 
 }

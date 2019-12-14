@@ -1,4 +1,4 @@
-package sts21.innopolis.university.innder.entity;
+package stc21.innopolis.university.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,15 +12,15 @@ import java.util.List;
 public class Trip {
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue (generator = "TRIP-GENERATOR", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue (generator = "TRIP_GENERATOR", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "TRIP_GENERATOR", allocationSize = 1, sequenceName = "trip_id_seq")
     private  long id;
 
     @Column(name = "start_data_time")
-    private  long StartDataTime;
+    private  long startDataTime;
 
     @Column(name = "finish_data_time")
-    private  long FinishDataTime;
+    private  long finishDataTime;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "trip_status_id")

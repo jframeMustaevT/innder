@@ -1,4 +1,4 @@
-package sts21.innopolis.university.innder.entity;
+package stc21.innopolis.university.entity;
 
 
 import lombok.Getter;

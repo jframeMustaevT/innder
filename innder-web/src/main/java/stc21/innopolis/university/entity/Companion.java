@@ -1,4 +1,4 @@
-package sts21.innopolis.university.innder.entity;
+package stc21.innopolis.university.entity;
 
 
 import lombok.Getter;
@@ -14,7 +14,7 @@ public class Companion {
 
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(generator = "COMPANIOn-GENERATOR", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "COMPANION_GENERATOR", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "COMPANION_GENERATOR", allocationSize = 1, sequenceName = "companion_id_seq")
     private  long id;
 }

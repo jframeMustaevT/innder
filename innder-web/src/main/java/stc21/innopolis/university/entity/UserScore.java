@@ -1,4 +1,4 @@
-package sts21.innopolis.university.innder.entity;
+package stc21.innopolis.university.entity;
 
 
 import lombok.Getter;
@@ -20,10 +20,10 @@ public class UserScore {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private List<User> User;
+    private List<User> user;
 
     @Column(name = "score")
-    private int Score;
+    private int score;
 
     @Column(name = "count", nullable = false) //default = 1
     private int count;
