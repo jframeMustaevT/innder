@@ -2,23 +2,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <parent>
         <artifactId>innder</artifactId>
         <groupId>stc21.innopolis.university</groupId>
         <version>1.0</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
     <artifactId>innder-db</artifactId>
 
-    <name>database</name>
+    <name>innder-db</name>
     <description>database migrations</description>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flyway.cleanOnValidationError>true</flyway.cleanOnValidationError>
     </properties>
 
     <build>
+
         <resources>
             <resource>
                 <directory>sql</directory>
@@ -31,8 +35,21 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>6.0.8</version>
                 <configuration>
-                    <configFiles>${pom.basedir}/conf/flyway.conf</configFiles>
+                    <url>${database.url}</url>
+                    <user>${database.user}</user>
+                    <password>${database.password}</password>
+                    <locations>filesystem:sql</locations>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <!--todo убрать clean после запуска в прод-->
+                            <goal>clean</goal>
+                            <goal>migrate</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <dependencies>
                     <dependency>
                         <groupId>org.postgresql</groupId>
