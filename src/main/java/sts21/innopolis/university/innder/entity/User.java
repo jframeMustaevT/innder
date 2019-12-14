@@ -4,20 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
-// id                    serial              NOT NULL UNIQUE,
-//         email                 TEXT                NOT NULL UNIQUE,
-//         password              TEXT                NOT NULL,
-//         phone                 int                 NOT NULL,
-//         telegram_name         TEXT                NOT NULL,
-//         status                TEXT                NOT NULL,
-//         firs_name             TEXT                NOT NULL,
-//         last_name             TEXT,
-//         enabled                 BOOLEAN             NOT NULL DEFAULT TRUE, -- включен ли аккаунт
-//         account_non_expired     BOOLEAN             NOT NULL DEFAULT TRUE, -- время действия аккаунта не истекло
-//         account_non_locked      BOOLEAN             NOT NULL DEFAULT TRUE, -- аккаунт не заблокирован
-//         credentials_non_expired BOOLEAN             NOT NULL DEFAULT TRUE,  -- не истекло ли время действия пароля
-//         CONSTRAINT user_pk PRIMARY KEY (id)
+
 @Entity
 @Table (name = "user")
 @Getter
@@ -28,6 +17,14 @@ public class User {
     @SequenceGenerator(name = "USER_GENERATOR", allocationSize = 1, sequenceName = "trip_id_seq")
     @Column(name = "id", nullable = false)
     private Long id;
+
+//    @OneToMany(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "banner")
+//    private List<User> userBanner;
+//
+//    @ManyToOne (fetch = FetchType.LAZY)
+//    @JoinColumn (name = "banned")
+//    private User userBaned;
 
     @Column (name = "email", nullable = false, unique = true)
     private String email;

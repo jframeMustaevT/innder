@@ -1,12 +1,5 @@
 package sts21.innopolis.university.innder.entity;
 
-//CREATE TABLE user_score (
-//        id          serial NOT NULL,
-//        user_id     bigint NOT NULL,
-//        score       int,
-//        count       int DEFAULT '1',
-//        CONSTRAINT user_score_pk PRIMARY KEY (id)
-
 
 import lombok.Getter;
 import lombok.Setter;
