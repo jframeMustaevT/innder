@@ -18,9 +18,9 @@ public class UserScore {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private List<User> user;
+    private User user;
 
     @Column(name = "score")
     private int score;

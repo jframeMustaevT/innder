@@ -45,16 +45,17 @@ public class User {
     private String lastName;
 
     @Column (name = "enable", nullable = false) //columnDefinition = true
-    private boolean enable ; // =true
+    private boolean enable = true;
 
     @Column (name = "account_non_expired", nullable = false)
-    private boolean accountNonExpired ; // =true
+    private boolean accountNonExpired = true;
 
     @Column (name = "account_non_locked", nullable = false)
-    private boolean accountNonLocked ; // =true
+    private boolean accountNonLocked = true ;
 
     @Column (name = "credentials_non_expired", nullable = false)
-    private boolean credentialsNonExpired ; // =true
+    private boolean credentialsNonExpired = true ;
+
 
 
 }
