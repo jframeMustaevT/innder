@@ -2,6 +2,7 @@ package sts21.innopolis.university.innder.entity;
 
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "trip_status")
 @Getter
+@Setter
 public class TripStatus {
     @Id
     //manual
