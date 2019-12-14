@@ -22,4 +22,65 @@
     <version>1.0</version>
     <name>innder</name>
     <description>Innder Project</description>
+
+    <profiles>
+        <profile>
+            <id>local_development</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <file>
+                    <exists>../dev.properties</exists>
+                </file>
+            </activation>
+            <properties>
+                <!--suppress UnresolvedMavenProperty -->
+                <database.url>${local.database.url}</database.url>
+                <!--suppress UnresolvedMavenProperty -->
+                <database.user>${local.database.user}</database.user>
+                <!--suppress UnresolvedMavenProperty -->
+                <database.password>${local.database.password}</database.password>
+            </properties>
+
+        </profile>
+        <profile>
+            <id>production</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <file>
+                    <missing>../dev.properties</missing>
+                </file>
+            </activation>
+            <properties>
+                <database.url>prod</database.url>
+                <database.user>prod</database.user>
+                <database.password>prod</database.password>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>properties-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <quiet>true</quiet>
+                            <files>
+                                <file>../dev.properties</file>
+                                <file>dev.properties</file>
+                            </files>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
