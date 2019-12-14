@@ -59,6 +59,10 @@ public class InnderTelegramBot extends TelegramLongPollingBot {
                 case "/setting":
                     sendAnswer(message, "In developing");
                     break;
+                case "/chat":
+                    sendAnswer(message, "ok");
+                    startChat(message);
+                    break;
                 default:
                     sendAnswer(message, "Innder service is still in development.\nWe apologize for the inconvenience!");
                     break;
@@ -74,16 +78,19 @@ public class InnderTelegramBot extends TelegramLongPollingBot {
     @Override
     public String getBotToken() {
         final XmlMapper xmlMapper = new XmlMapper();
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("telegram_token.xml");
-        try {
-            if (inputStream != null) {
-                TokenStorage tokenStorage = xmlMapper.readValue(new String(inputStream.readAllBytes()), TokenStorage.class);
-                return tokenStorage.getToken();
-            }
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("telegram_token.xml")) {
+            TokenStorage tokenStorage = xmlMapper.readValue(new String(inputStream.readAllBytes()), TokenStorage.class);
+            return tokenStorage.getToken();
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Token storage not found");
         }
         return "";
+    }
+
+    public void startChat(Message message) {
+        final Long chatId = message.getChatId();
+
+
     }
 }
