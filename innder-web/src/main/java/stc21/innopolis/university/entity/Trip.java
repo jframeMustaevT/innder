@@ -39,6 +39,9 @@ public class Trip {
     @JoinColumn(name = "rout")
     private Rout rout;
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private List<User> user;
 
 
 }
