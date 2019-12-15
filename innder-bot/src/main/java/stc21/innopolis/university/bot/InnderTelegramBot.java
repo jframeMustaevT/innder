@@ -1,7 +1,7 @@
 package stc21.innopolis.university.bot;
 
 
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -9,11 +9,16 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.io.IOException;
-import java.io.InputStream;
 
 @Component
 public class InnderTelegramBot extends TelegramLongPollingBot {
+
+    private String botToken;
+
+    public InnderTelegramBot(@Qualifier(value = "TelegramToken") String token) {
+        super();
+        this.botToken = token;
+    }
 
     @Override
     public synchronized void onUpdateReceived(Update update) {
@@ -54,15 +59,7 @@ public class InnderTelegramBot extends TelegramLongPollingBot {
 
     @Override
     public synchronized String getBotToken() {
-        final XmlMapper xmlMapper = new XmlMapper();
-        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("telegram_token.xml")) {
-            TokenStorage tokenStorage = xmlMapper.readValue(new String(inputStream.readAllBytes()), TokenStorage.class);
-            return tokenStorage.getToken();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Token storage not found");
-        }
-        return "";
+        return this.botToken;
     }
 
     private synchronized void sendAnswer(Message message, String answer) {
@@ -79,7 +76,5 @@ public class InnderTelegramBot extends TelegramLongPollingBot {
 
     public synchronized void startChat(Message message) {
         final Long chatId = message.getChatId();
-
-
     }
 }
