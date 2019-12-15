@@ -22,9 +22,9 @@ public class Trip {
     @Column(name = "finish_data_time")
     private  long finishDataTime;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trip_status_id")
-    private List<TripStatus> status;
+    private TripStatus tripStatus;
 
     @Column(name = "descrpition")
     private String Descriptin;
@@ -35,8 +35,9 @@ public class Trip {
     @Column(name = "vehicle")
     private String Vehicle;
 
-    @Column(name = "rout", nullable = false)
-    private long Rout;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rout")
+    private Rout rout;
 
 
 
