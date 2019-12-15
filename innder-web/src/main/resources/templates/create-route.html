@@ -149,7 +149,7 @@
     }
 </style>
 <body>
-<h1>My Google Map</h1>
+<h1>Постройте маршрут поездки</h1>
 <div id="myModalType" class="modal2">
     <div class="modal-content2">
         <span class="close2">&times;</span>
@@ -189,12 +189,12 @@
 
     var map;
     var geocoder;
-    var s ;
-    var e ;
-    var ss;
-    var se ;
-    var ssn ;
-    var sen ;
+    var citystart;
+    var cityend;
+    var streetstart;
+    var streetend ;
+    var streetstartnumber ;
+    var streetendnumber ;
 
     function redirectToNext() {
 
@@ -203,15 +203,15 @@
                 method: 'post',
                 url: '/create-route',
                 data: {
-                    startcity: s,
-                    endcity: e,
-                    startstreet: ss,
-                    endstreet: se,
-                    streetnumberstart: ssn,
-                    streetnumberend: sen
+                    startcity: citystart,
+                    endcity: cityend,
+                    startstreet: streetstart,
+                    endstreet: streetend,
+                    streetnumberstart: streetstartnumber,
+                    streetnumberend: streetendnumber
                 }
             }).then(response => {
-                alert(response.data);
+                localStorage.setItem("routeId", response.data);
             });
             // window.location.replace('create-trip.html');
         }else{
@@ -350,20 +350,20 @@
 
     function calculateAndDisplayRoute(directionsService, directionsRenderer) {
         panel: document.getElementById('right-panel');
-        s = document.getElementById('addressCityStart').value;
-        e = document.getElementById('addressCityEnd').value;
-        ss = document.getElementById('addressStreetStart').value;
-        se = document.getElementById('addressStreetEnd').value;
-        ssn = document.getElementById('addressStreetNumberStart').value;
-        sen = document.getElementById('addressStreetNumberEnd').value;
-        if (!isNaN(e) || !isNaN(s) || (se !=='' && !isNaN(se)) || (ss !=='' && !isNaN(ss)) || isNaN(ssn) || isNaN(sen)) {
+        citystart= document.getElementById('addressCityStart').value;
+        cityend = document.getElementById('addressCityEnd').value;
+        streetstart = document.getElementById('addressStreetStart').value;
+        streetend = document.getElementById('addressStreetEnd').value;
+        streetstartnumber = document.getElementById('addressStreetNumberStart').value;
+        streetendnumber = document.getElementById('addressStreetNumberEnd').value;
+        if (!isNaN(cityend) || !isNaN(citystart) || (streetend !=='' && !isNaN(streetend)) || (streetstart !=='' && !isNaN(streetstart)) || isNaN(streetstartnumber) || isNaN(streetendnumber)) {
             modalInvalidType.style.display = "block";
             return false;
         }
 
-        if ((e || e !== '') && (s || s !== '')) {
-            var start = s + '' + ss + '' + ssn;
-            var end = e + '' + se + '' + sen;
+        if ((cityend || cityend !== '') && (citystart || citystart !== '')) {
+            var start = citystart + '' + streetstart + '' + streetstartnumber;
+            var end = cityend + '' + streetend + '' + streetendnumber;
             localStorage.setItem("StarLoc",start);
             localStorage.setItem("EndLoc", end);
             var request = {

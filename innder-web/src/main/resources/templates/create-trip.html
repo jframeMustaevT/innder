@@ -24,11 +24,11 @@
 <h1>ТРИП</h1>
 <div id="map"></div>
 Описание:
-<br><input id="DescriptionBox" type="textarea cols='60' rows='8'" placeholder="Описание поездки"/><br>
+<br><textarea id="tarea" cols="60"  rows="10" placeholder="Введите описание"></textarea><br>
 Стоимость:
 <br><input id="CostBox" type="textbox" placeholder="Напишите стоимость поездки(числом в рублях)"/><br>
 Описание транспорта:
-<select >
+<select id="TransportType">
     <option disabled selected>Выберите</option>
     <option value="OwnCar">Личный транспорт</option>
     <option value="Bus">Автобус</option>
@@ -39,16 +39,42 @@
 <input id="buttonBack" type="submit" value="Назад"/>
 <input id="buttonConfirmTrip" type="submit" value="Подтвердить поездку"/>
 <script>
-    // document.getElementById('buttonConfirmTrip').addEventListener('click', function () {
-    //     getUTCTime();});
-    // function getUTCTime() {
-    //     var UTCtime = Date.parse(document.getElementById('datePick').value);
-    //     alert(UTCtime);
-    //     var time = new Date(UTCtime);
-    //     alert(time.toLocaleString());
-    // }
+    src="https://unpkg.com/axios/dist/axios.min.js"
+</script>
+<script>
+    document.getElementById('buttonConfirmTrip').addEventListener('click', function () {
+        getAndSendData();});
+    function getAndSendData() {
+        var tripStartTime = Date.parse(document.getElementById('datePick').value);
+        var description = document.getElementById('tarea').value;
+        var transportType = document.getElementById('TransportType').value;
+        var travelCost = document.getElementById('CostBox').value;
+        var routeId = localStorage.getItem("routeId");
+        var toDelete = false;
+        axios({
+            method: 'post',
+            url: '/create-trip',
+            data: {
+                routeId: routeId,
+                tripStartTime:tripStartTime,
+                description: description,
+                transportType: transportType,
+                travelCost: travelCost,
+                toDelete : toDelete
+            }
+        });
+        window.location.replace('index.html');
+    }
     function getBack() {
-        window.location.href('create-route.html');
+        var toDelete = true;
+        axios({
+            method: 'post',
+            url: '/create-trip',
+            data: {
+                toDelete : toDelete
+            }
+        });
+        window.location.replace('create-route.html');
     }
     document.getElementById('buttonBack').addEventListener('click', function () {
         getBack();});
@@ -69,8 +95,8 @@
     }
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        start = localStorage.getItem("StarLoc");
-        end = localStorage.getItem("EndLoc");
+        var start = localStorage.getItem("StarLoc");
+        var end = localStorage.getItem("EndLoc");
         directionsService.route({
             origin: start,
             destination: end,
@@ -81,6 +107,7 @@
             }
         });
     }
+
 
 </script>
 <script
