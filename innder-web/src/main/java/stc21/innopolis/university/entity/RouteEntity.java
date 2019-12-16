@@ -3,112 +3,112 @@ package stc21.innopolis.university.entity;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name = "route")
+//@Entity
+//@Table(name = "route")
 public class RouteEntity {
 
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(generator = "USER_ID_GENERATOR", strategy = GenerationType.AUTO)
-    @SequenceGenerator(name = "USER_ID_GENERATOR", allocationSize = 1, sequenceName = "users_id_seq")
-    private Long id;
-
-    @Column(name = "startcity", nullable = false)
-    private String startcity;
-
-    @Column(name = "endcity", nullable = false)
-    private String endcity;
-
-    @Column(name = "startstreet")
-    private String startstreet;
-
-    @Column(name = "endstreet")
-    private String endstreet;
-
-    @Column(name = "streetnumberstart")
-    private String streetnumberstart;
-
-    @Column(name = "streetnumberend")
-    private String streetnumberend;
-
-    public RouteEntity() {
-    }
-
-    public RouteEntity(String startcity, String endcity, String startstreet, String endstreet, String streetnumberstart, String streetnumberend) {
-        this.startcity = startcity;
-        this.endcity = endcity;
-        this.startstreet = startstreet;
-        this.endstreet = endstreet;
-        this.streetnumberstart = streetnumberstart;
-        this.streetnumberend = streetnumberend;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getStartcity() {
-        return startcity;
-    }
-
-    public void setStartcity(String startcity) {
-        this.startcity = startcity;
-    }
-
-    public String getEndcity() {
-        return endcity;
-    }
-
-    public void setEndcity(String endcity) {
-        this.endcity = endcity;
-    }
-
-    public String getStartstreet() {
-        return startstreet;
-    }
-
-    public void setStartstreet(String startstreet) {
-        this.startstreet = startstreet;
-    }
-
-    public String getEndstreet() {
-        return endstreet;
-    }
-
-    public void setEndstreet(String endstreet) {
-        this.endstreet = endstreet;
-    }
-
-    public String getStreetnumberstart() {
-        return streetnumberstart;
-    }
-
-    public void setStreetnumberstart(String streetnumberstart) {
-        this.streetnumberstart = streetnumberstart;
-    }
-
-    public String getStreetnumberend() {
-        return streetnumberend;
-    }
-
-    public void setStreetnumberend(String streetnumberend) {
-        this.streetnumberend = streetnumberend;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RouteEntity route = (RouteEntity) o;
-        return Objects.equals(id, route.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+//    @Id
+//    @Column(name = "id", nullable = false)
+//    @GeneratedValue(generator = "USER_ID_GENERATOR", strategy = GenerationType.AUTO)
+//    @SequenceGenerator(name = "USER_ID_GENERATOR", allocationSize = 1, sequenceName = "users_id_seq")
+//    private Long id;
+//
+//    @Column(name = "startcity", nullable = false)
+//    private String startcity;
+//
+//    @Column(name = "endcity", nullable = false)
+//    private String endcity;
+//
+//    @Column(name = "startstreet")
+//    private String startstreet;
+//
+//    @Column(name = "endstreet")
+//    private String endstreet;
+//
+//    @Column(name = "streetnumberstart")
+//    private String streetnumberstart;
+//
+//    @Column(name = "streetnumberend")
+//    private String streetnumberend;
+//
+//    public RouteEntity() {
+//    }
+//
+//    public RouteEntity(String startcity, String endcity, String startstreet, String endstreet, String streetnumberstart, String streetnumberend) {
+//        this.startcity = startcity;
+//        this.endcity = endcity;
+//        this.startstreet = startstreet;
+//        this.endstreet = endstreet;
+//        this.streetnumberstart = streetnumberstart;
+//        this.streetnumberend = streetnumberend;
+//    }
+//
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getStartcity() {
+//        return startcity;
+//    }
+//
+//    public void setStartcity(String startcity) {
+//        this.startcity = startcity;
+//    }
+//
+//    public String getEndcity() {
+//        return endcity;
+//    }
+//
+//    public void setEndcity(String endcity) {
+//        this.endcity = endcity;
+//    }
+//
+//    public String getStartstreet() {
+//        return startstreet;
+//    }
+//
+//    public void setStartstreet(String startstreet) {
+//        this.startstreet = startstreet;
+//    }
+//
+//    public String getEndstreet() {
+//        return endstreet;
+//    }
+//
+//    public void setEndstreet(String endstreet) {
+//        this.endstreet = endstreet;
+//    }
+//
+//    public String getStreetnumberstart() {
+//        return streetnumberstart;
+//    }
+//
+//    public void setStreetnumberstart(String streetnumberstart) {
+//        this.streetnumberstart = streetnumberstart;
+//    }
+//
+//    public String getStreetnumberend() {
+//        return streetnumberend;
+//    }
+//
+//    public void setStreetnumberend(String streetnumberend) {
+//        this.streetnumberend = streetnumberend;
+//    }
+//
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        RouteEntity route = (RouteEntity) o;
+//        return Objects.equals(id, route.id);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id);
+//    }
 }

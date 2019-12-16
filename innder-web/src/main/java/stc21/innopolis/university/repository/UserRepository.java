@@ -78,7 +78,8 @@ public class UserRepository {
       // создаём нового пользователя
       // create
       // keyholder - для того, чтобы вытащить автосгенерированное значение id
-      KeyHolder keyHolder = new GeneratedKeyHolder();
+      KeyHolder keyHolder =
+              new GeneratedKeyHolder();
       MapSqlParameterSource params = new MapSqlParameterSource();
       params.addValues(Map.of(
           "username", user.getUsername(),
