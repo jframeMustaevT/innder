@@ -23,6 +23,7 @@ public class InnderTelegramBot extends TelegramLongPollingBot {
     @Override
     public synchronized void onUpdateReceived(Update update) {
         Message message = update.getMessage();
+        String charId = message.getChatId().toString();
         if (message != null && message.hasText()) {
             switch (message.getText()) {
                 case "/start":
@@ -30,23 +31,19 @@ public class InnderTelegramBot extends TelegramLongPollingBot {
                             "/help - in developing\n" +
                             "/setting - in developing\n" +
                             "/hello - I'll say hello))\n";
-                    sendAnswer(message, answer);
+                    sendMessageToChat(charId, answer);
                     break;
                 case "/hello":
-                    sendAnswer(message, "Hello my friend");
+                    sendMessageToChat(charId, "Hello my friend");
                     break;
                 case "/help":
-                    sendAnswer(message, "In developing");
+                    sendMessageToChat(charId, "In developing");
                     break;
                 case "/setting":
-                    sendAnswer(message, "In developing");
-                    break;
-                case "/chat":
-                    sendAnswer(message, "ok");
-                    startChat(message);
+                    sendMessageToChat(charId, "In developing");
                     break;
                 default:
-                    sendAnswer(message, "Innder service is still in development.\nWe apologize for the inconvenience!");
+                    sendMessageToChat(charId, "Innder service is still in development.\nWe apologize for the inconvenience!");
                     break;
             }
         }
@@ -62,19 +59,19 @@ public class InnderTelegramBot extends TelegramLongPollingBot {
         return this.botToken;
     }
 
-    private synchronized void sendAnswer(Message message, String answer) {
+    public synchronized boolean sendMessageToChat(String chatId, String message){
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
-        sendMessage.setChatId(message.getChatId());
-        sendMessage.setText(answer);
+        sendMessage.setChatId(chatId);
+        sendMessage.setText(message);
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
+            //todo add logger
+            System.out.println("Bot don't sens message to chatId: "+chatId);
             e.printStackTrace();
+            return false;
         }
-    }
-
-    public synchronized void startChat(Message message) {
-        final Long chatId = message.getChatId();
+        return true;
     }
 }

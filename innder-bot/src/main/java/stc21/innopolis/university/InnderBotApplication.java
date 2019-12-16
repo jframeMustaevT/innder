@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.telegram.telegrambots.ApiContextInitializer;
 import stc21.innopolis.university.bot.TokenStorage;
 
@@ -12,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @SpringBootApplication
+@EnableWebMvc
 @EnableAsync
 public class InnderBotApplication {
     public static void main(String[] args) {
