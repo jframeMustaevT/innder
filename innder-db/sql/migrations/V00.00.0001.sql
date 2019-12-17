@@ -20,38 +20,36 @@ CREATE TABLE "user" (
 
 CREATE SEQUENCE "user_id_seq" START 1;
 
-CREATE TABLE  "authority"(
-    id        int8  PRIMARY KEY,
-    user_id   int8  NOT NULL REFERENCES "user"(id),
-    authority TEXT  NOT NULL
-)
-WITH (
+CREATE TABLE  "authority" (
+                        id        int8  PRIMARY KEY,
+                        user_id   int8  NOT NULL REFERENCES "user"(id),
+                        authority TEXT  NOT NULL
+) WITH (
       OIDS=FALSE
     );
 
 CREATE SEQUENCE "authority_id_seq" START 1;
 
--- CREATE TABLE "trip" (
---                         id                    int8 NOT NULL,
---                         owner_id              int8 NOT NULL,
---                         start_data_time       TIMESTAMP,
---                         finish_data_time      TIMESTAMP,
---                         status                int NOT NULL,
---                         type                  int,
---                         description           TEXT,
---                         cost                  TEXT,
---                         vehicle               TEXT,
---                         rout                  int8,
---                         max_companions        int,
---                         CONSTRAINT trip_pk    PRIMARY KEY (id)
--- ) WITH (
---       OIDS=FALSE
---     );
---
---
--- ALTER TABLE trip ADD CONSTRAINT trip_fk0 FOREIGN KEY (owner_id) REFERENCES "user"(id);
--- ALTER TABLE trip ADD CONSTRAINT trip_fk2 FOREIGN KEY (type) REFERENCES "trip_type"(id);
--- ALTER TABLE trip ADD CONSTRAINT trip_fk3 FOREIGN KEY (rout) REFERENCES "route"(id);
+CREATE TABLE "trip" (
+                        id                    int8 NOT NULL,
+                        owner_id              int8 NOT NULL,
+                        start_data_time       int8,
+                        finish_data_time      int8,
+                        status                TEXT NOT NULL,
+                        type                  TEXT NOT NULL,
+                        description           TEXT,
+                        cost                  TEXT,
+                        route_id              int8,
+                        max_companions        int,
+                        CONSTRAINT trip_pk    PRIMARY KEY (id)
+) WITH (
+      OIDS=FALSE
+    );
+
+CREATE SEQUENCE "trip_id_seq" START 1;
+
+ALTER TABLE "trip" ADD CONSTRAINT trip_fk_owner FOREIGN KEY (owner_id) REFERENCES "user"(id);
+--ALTER TABLE "trip" ADD CONSTRAINT trip_fk_route FOREIGN KEY (route_id) REFERENCES "route"(id);
 
 
 --
@@ -136,12 +134,6 @@ CREATE SEQUENCE "authority_id_seq" START 1;
 --
 -- ALTER TABLE user_ban ADD CONSTRAINT user_ban_fk0 FOREIGN KEY (banner_id) REFERENCES "user"(id);
 -- ALTER TABLE user_ban ADD CONSTRAINT user_ban_fk1 FOREIGN KEY (banned_id) REFERENCES "user"(id);
---
--- ALTER TABLE trip ADD CONSTRAINT trip_fk0 FOREIGN KEY (owner_id) REFERENCES "user"(id);
--- ALTER TABLE trip ADD CONSTRAINT trip_fk2 FOREIGN KEY (type) REFERENCES trip_type(id);
--- ALTER TABLE trip ADD CONSTRAINT trip_fk3 FOREIGN KEY (rout) REFERENCES rout(id);
---
---
 --
 -- ALTER TABLE score ADD CONSTRAINT score_fk0 FOREIGN KEY (from_user_id) REFERENCES "user"(id);
 -- ALTER TABLE score ADD CONSTRAINT score_fk1 FOREIGN KEY (to_user_id) REFERENCES "user"(id);

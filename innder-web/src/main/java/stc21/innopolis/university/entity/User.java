@@ -15,7 +15,7 @@ import java.util.Collection;
 @AllArgsConstructor
 public class User implements UserDetails {
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Collection<Authority> authorities;
 
     @Id

@@ -1,9 +1,13 @@
 package stc21.innopolis.university.configuration;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class WebMvcConfiguration implements WebMvcConfigurer {
@@ -24,5 +28,9 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     registry.addResourceHandler("/js/**").addResourceLocations("classpath:/static/js/");
     registry.addResourceHandler("/vendor/**").addResourceLocations("classpath:/static/vendor/");
 
+  }
+  @Bean
+  public NamedParameterJdbcTemplate getJdbcTemlpate(DataSource dataSource){
+    return new NamedParameterJdbcTemplate(dataSource);
   }
 }
