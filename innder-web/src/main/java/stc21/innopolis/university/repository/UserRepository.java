@@ -29,8 +29,11 @@ public class UserRepository {
 //  }
 
   public User findByUsername(String username) {
-    User user = template.queryForObject(
-        "SELECT id, username, password, enabled, account_non_expired, account_non_locked, credentials_non_expired FROM users WHERE username = :username", // :username - это именованный параметр
+      System.out.println("!!!!!!!!!!!!!!"
++              username
+      );
+      User user = template.queryForObject(
+        "SELECT id, username, password, enabled, account_non_expired, account_non_locked, credentials_non_expired FROM user WHERE username = :username", // :username - это именованный параметр
         // key - :username (но без двоеточия)
         Map.of("username", username),
         new RowMapper<User>() {
@@ -91,7 +94,7 @@ public class UserRepository {
       ));
 
       template.update(
-          "INSERT INTO users (username, password, enabled, account_non_expired, account_non_locked, credentials_non_expired) VALUES (:username, :password, :enabled, :account_non_expired, :account_non_locked, :credentials_non_expired)",
+          "INSERT INTO user (username, password, enabled, account_non_expired, account_non_locked, credentials_non_expired) VALUES (:username, :password, :enabled, :account_non_expired, :account_non_locked, :credentials_non_expired)",
           params,
           keyHolder
       );
@@ -115,9 +118,9 @@ public class UserRepository {
 
     // update
     template.update(
-        "UPDATE users SET username = :username, password = :password, enabled = :enabled, account_non_expired = :account_non_expired, account_non_locked = :account_non_locked, credentials_non_expired = :credentials_non_expired WHERE user_id = :user_id",
+        "UPDATE user SET username = :username, password = :password, enabled = :enabled, account_non_expired = :account_non_expired, account_non_locked = :account_non_locked, credentials_non_expired = :credentials_non_expired WHERE id = :id",
         Map.of(
-            "user_id", user.getId(),
+            "id", user.getId(),
             "username", user.getUsername(),
             "password", user.getPassword(), // пароль уже должен быть шифрованный
             "enabled", user.isEnabled(),

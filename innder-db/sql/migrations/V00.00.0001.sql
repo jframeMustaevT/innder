@@ -1,6 +1,7 @@
 CREATE TABLE "user" (
                         id                      int8                NOT NULL UNIQUE,
                         email                   TEXT                NOT NULL UNIQUE,
+                        username                TEXT                NOT NULL UNIQUE,
                         password                TEXT                NOT NULL,
                         phone                   TEXT                NOT NULL,
                         telegram_name           TEXT                NOT NULL,
@@ -18,6 +19,17 @@ CREATE TABLE "user" (
     );
 
 CREATE SEQUENCE "user_id_seq" START 1;
+
+CREATE TABLE  "authority"(
+    id        int8  PRIMARY KEY,
+    user_id   int8  NOT NULL REFERENCES "user"(id),
+    authority TEXT  NOT NULL
+)
+WITH (
+      OIDS=FALSE
+    );
+
+CREATE SEQUENCE "authority_id_seq" START 1;
 
 -- CREATE TABLE "trip" (
 --                         id                    int8 NOT NULL,
