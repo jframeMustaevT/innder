@@ -18,7 +18,7 @@ public class Authority implements GrantedAuthority {
     @GeneratedValue(generator = "AUTHORITY_GENERATOR", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "AUTHORITY_GENERATOR", allocationSize = 1, sequenceName = "authority_id_seq")
     @Column(name = "id", nullable = false)
-    private Long id;
+    private long id;
 
     @Column(name = "authority", nullable = false)
     private String authority;

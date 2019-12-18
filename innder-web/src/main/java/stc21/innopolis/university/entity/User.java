@@ -9,20 +9,20 @@ import java.util.Collection;
 
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class User implements UserDetails {
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Collection<Authority> authorities;
-
     @Id
     @GeneratedValue(generator = "USER_GENERATOR", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "USER_GENERATOR", allocationSize = 1, sequenceName = "user_id_seq")
     @Column(name = "id", nullable = false)
-    private Long id;
+    private long id;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Authority> authorities;
 
     @Column(name = "email", nullable = false)
     private String email;

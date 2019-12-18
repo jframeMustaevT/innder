@@ -1,4 +1,4 @@
-CREATE TABLE "user" (
+CREATE TABLE "users" (
                         id                      int8                NOT NULL UNIQUE,
                         email                   TEXT                NOT NULL UNIQUE,
                         username                TEXT                NOT NULL UNIQUE,
@@ -21,14 +21,16 @@ CREATE TABLE "user" (
 CREATE SEQUENCE "user_id_seq" START 1;
 
 CREATE TABLE  "authority" (
-                        id        int8  PRIMARY KEY,
-                        user_id   int8  NOT NULL REFERENCES "user"(id),
-                        authority TEXT  NOT NULL
+                        id        int8,
+                        user_id   int8  NOT NULL,
+                        authority TEXT  NOT NULL,
+                        CONSTRAINT authority_pk    PRIMARY KEY (id)
 ) WITH (
       OIDS=FALSE
     );
 
 CREATE SEQUENCE "authority_id_seq" START 1;
+ALTER TABLE "authority" ADD CONSTRAINT authority_fk_user FOREIGN KEY (user_id) REFERENCES "users"(id);
 
 CREATE TABLE "trip" (
                         id                    int8 NOT NULL,
@@ -47,9 +49,36 @@ CREATE TABLE "trip" (
     );
 
 CREATE SEQUENCE "trip_id_seq" START 1;
+ALTER TABLE "trip" ADD CONSTRAINT trip_fk_owner FOREIGN KEY (owner_id) REFERENCES "users"(id);
 
-ALTER TABLE "trip" ADD CONSTRAINT trip_fk_owner FOREIGN KEY (owner_id) REFERENCES "user"(id);
---ALTER TABLE "trip" ADD CONSTRAINT trip_fk_route FOREIGN KEY (route_id) REFERENCES "route"(id);
+CREATE TABLE "route" (
+                        id                  int8 NOT NULL,
+                        start_city          TEXT NOT NULL,
+                        start_street        TEXT NULL,
+                        start_street_number TEXT NULL,
+                        end_city            TEXT NOT NULL,
+                        end_street          TEXT NULL,
+                        end_street_number   TEXT NULL,
+                        CONSTRAINT rout_pk PRIMARY KEY (id)
+) WITH (
+      OIDS=FALSE
+    );
+CREATE SEQUENCE "route_id_seq" START 1;
+ALTER TABLE "trip" ADD CONSTRAINT trip_fk_route FOREIGN KEY (route_id) REFERENCES "route"(id);
+
+
+CREATE TABLE "companion" (
+                             id              int8 NOT NULL,
+                             trip_id         int8 NOT NULL,
+                             user_id         int8 NOT NULL,
+                             CONSTRAINT companion_pk PRIMARY KEY (id)
+) WITH (
+      OIDS=FALSE
+    );
+
+CREATE SEQUENCE "companion_id_seq" START 1;
+ALTER TABLE "companion" ADD CONSTRAINT companion_fk_trip FOREIGN KEY (trip_id) REFERENCES "trip"(id);
+ALTER TABLE "companion" ADD CONSTRAINT companion_fk_user FOREIGN KEY (user_id) REFERENCES "users"(id);
 
 
 --
@@ -74,22 +103,7 @@ ALTER TABLE "trip" ADD CONSTRAINT trip_fk_owner FOREIGN KEY (owner_id) REFERENCE
 -- ) WITH (
 --       OIDS=FALSE
 --     );
---
---
---
 
---
---
---
--- CREATE TABLE "trip_type" (
---                              id int8 NOT NULL,
---                              trip_type TEXT,
---                              CONSTRAINT trip_type_pk PRIMARY KEY (id)
--- ) WITH (
---       OIDS=FALSE
---     );
---
---
 --
 -- CREATE TABLE "score" (
 --                          id int8 NOT NULL,
@@ -99,35 +113,6 @@ ALTER TABLE "trip" ADD CONSTRAINT trip_fk_owner FOREIGN KEY (owner_id) REFERENCE
 -- ) WITH (
 --       OIDS=FALSE
 --     );
---
---
---
--- CREATE TABLE "route" (
---                         id int8 NOT NULL,
---                         start_city text NOT NULL,
---                         start_street text  NULL,
---                         start_build text  NULL,
---                         end_city text NOT NULL,
---                         end_street text NULL,
---                         end_build text NULL,
---                         CONSTRAINT rout_pk PRIMARY KEY (id)
--- ) WITH (
---       OIDS=FALSE
---     );
---
---
---
--- CREATE TABLE "companion" (
---                              id int8 NOT NULL,
---                              trip_id int8 NOT NULL,
---                              user_id int8 NOT NULL,
---                              CONSTRAINT companion_pk PRIMARY KEY (id)
--- ) WITH (
---       OIDS=FALSE
---     );
---
---
---
 --
 -- ALTER TABLE user_score ADD CONSTRAINT user_score_fk0 FOREIGN KEY (user_id) REFERENCES "user"(id);
 -- ALTER TABLE user_score ADD CONSTRAINT user_score_fk1 FOREIGN KEY (score) REFERENCES score(id);
@@ -139,6 +124,5 @@ ALTER TABLE "trip" ADD CONSTRAINT trip_fk_owner FOREIGN KEY (owner_id) REFERENCE
 -- ALTER TABLE score ADD CONSTRAINT score_fk1 FOREIGN KEY (to_user_id) REFERENCES "user"(id);
 --
 --
--- ALTER TABLE companion ADD CONSTRAINT companion_fk0 FOREIGN KEY (trip_id) REFERENCES trip(id);
--- ALTER TABLE companion ADD CONSTRAINT companion_fk1 FOREIGN KEY (user_id) REFERENCES "user"(id);
+
 

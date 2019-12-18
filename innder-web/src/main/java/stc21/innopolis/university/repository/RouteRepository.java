@@ -1,11 +1,11 @@
 package stc21.innopolis.university.repository;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
-import stc21.innopolis.university.entity.RouteEntity;
+import org.springframework.stereotype.Repository;
+import stc21.innopolis.university.entity.Route;
 
-public interface RouteRepository {
-    //todo вернуть наследование
-    //extends PagingAndSortingRepository<RouteEntity, Long> {
+@Repository
+public interface RouteRepository extends PagingAndSortingRepository<Route, Long> {
 
 
 }
