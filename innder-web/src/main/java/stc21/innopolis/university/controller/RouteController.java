@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import stc21.innopolis.university.entity.RouteEntity;
+import stc21.innopolis.university.entity.Route;
 import stc21.innopolis.university.repository.RouteRepository;
 
 import javax.transaction.Transactional;
@@ -27,8 +27,8 @@ public class RouteController {
 
     @RequestMapping(value = "/create-route", method = RequestMethod.POST)
     @ResponseBody
-    public Long set(@RequestBody RouteEntity route) {
-        RouteEntity document = route;
+    public Long set(@RequestBody Route route) {
+        Route document = route;
         routeRepository.save(document);
         return document.getId();
     }

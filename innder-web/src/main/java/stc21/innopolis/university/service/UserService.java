@@ -10,9 +10,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stc21.innopolis.university.domain.Registration;
-import stc21.innopolis.university.domain.User;
+import stc21.innopolis.university.entity.Authority;
+import stc21.innopolis.university.entity.User;
+import stc21.innopolis.university.entity.UserStatus;
 import stc21.innopolis.university.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,15 +42,22 @@ public class UserService implements UserDetailsService {
       throw new RuntimeException("Пароли не совпадают");
     }
     // 3. сохраняем
-    repository.save(new User(
-        0,
-        data.getUsername(),
-        passwordEncoder.encode(data.getPassword()), // потому что пароль в открытом виде
-        List.of(new SimpleGrantedAuthority("ROLE_USER")),
-        true,
-        true,
-        true,
-        true
-    ));
+    User user = new User(
+            0L,
+            new ArrayList<Authority>(),
+            "",
+            data.getUsername(),
+            passwordEncoder.encode(data.getPassword()),
+            "",
+            "",
+            "",
+            UserStatus.ACTIVE,
+            "",
+            "",
+            true,
+            true,
+            true,
+            true);
+    repository.save(user);
   }
 }

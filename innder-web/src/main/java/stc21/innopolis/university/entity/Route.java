@@ -1,19 +1,19 @@
 package stc21.innopolis.university.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "rout")
-@Getter
-@Setter
-public class Rout {
+@Table(name = "route")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Route {
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(generator = "TRIP_GENERATOR", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "TRIP_GENERATOR", allocationSize = 1, sequenceName = "trip_id_seq")
+    @GeneratedValue(generator = "ROUTE_GENERATOR", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "ROUTE_GENERATOR", allocationSize = 1, sequenceName = "route_id_seq")
     private long id;
 
     @Column (name = "start_city", nullable = false)
@@ -22,8 +22,8 @@ public class Rout {
     @Column (name = "start_street")
     private String startStreet;
 
-    @Column (name = "star_build")
-    private String startBuild;
+    @Column (name = "start_street_number")
+    private String startStreetNumber;
 
     @Column (name = "end_city", nullable = false)
     private String endCity;
@@ -31,6 +31,6 @@ public class Rout {
     @Column (name = "end_street")
     private String endStreet;
 
-    @Column (name = "end_build")
-    private String endBuild;
+    @Column (name = "end_street_number")
+    private String endStreetNumber;
 }

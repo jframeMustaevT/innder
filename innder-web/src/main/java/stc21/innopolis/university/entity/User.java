@@ -1,61 +1,66 @@
 package stc21.innopolis.university.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Collection;
 
 
 @Entity
-@Table (name = "user")
-@Getter
-@Setter
-public class User {
+@Table(name = "users")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User implements UserDetails {
+
     @Id
-    @GeneratedValue (generator = "USER_GENERATOR", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "USER_GENERATOR", allocationSize = 1, sequenceName = "trip_id_seq")
+    @GeneratedValue(generator = "USER_GENERATOR", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "USER_GENERATOR", allocationSize = 1, sequenceName = "user_id_seq")
     @Column(name = "id", nullable = false)
-    private Long id;
+    private long id;
 
-//    @OneToMany(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "banner")
-//    private List<User> userBanner;
-//
-//    @ManyToOne (fetch = FetchType.LAZY)
-//    @JoinColumn (name = "banned")
-//    private User userBaned;
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Authority> authorities;
 
-    @Column (name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column (name = "phone", nullable = false)
-    private int phone;
+    @Column(name = "username", nullable = false)
+    private String username;
 
-    @Column (name = "telegram_name")
+    @Column(name = "password", nullable = false)
+    private String password;
+
+    @Column(name = "phone", nullable = false)
+    private String phone;
+
+    @Column(name = "telegram_name")
     private String telegramName;
 
-    @Column (name = "status", nullable = false)
-    private String status;
+    @Column(name = "telegram_chat_id")
+    private String telegramChatId;
 
-    @Column (name = "first_name", nullable = false)
+    @Column(name = "status", nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private UserStatus status;
+
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column (name = "last_name")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column (name = "enable", nullable = false) //columnDefinition = true
-    private boolean enable = true;
+    @Column(name = "enabled", nullable = false)
+    private boolean enabled;
 
-    @Column (name = "account_non_expired", nullable = false)
-    private boolean accountNonExpired = true;
+    @Column(name = "account_non_expired", nullable = false)
+    private boolean accountNonExpired;
 
-    @Column (name = "account_non_locked", nullable = false)
-    private boolean accountNonLocked = true ;
+    @Column(name = "account_non_locked", nullable = false)
+    private boolean accountNonLocked;
 
-    @Column (name = "credentials_non_expired", nullable = false)
-    private boolean credentialsNonExpired = true ;
-
-
-
+    @Column(name = "credentials_non_expired", nullable = false)
+    private boolean credentialsNonExpired;
 }

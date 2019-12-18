@@ -1,48 +1,56 @@
 package stc21.innopolis.university.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
+
 @Entity
-@Table (name = "trip")
-@Getter
-@Setter
+@Table(name = "trip")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Trip {
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue (generator = "TRIP_GENERATOR", strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "TRIP_GENERATOR", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "TRIP_GENERATOR", allocationSize = 1, sequenceName = "trip_id_seq")
-    private  long id;
+    private long id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
     @Column(name = "start_data_time")
-    private  long startDataTime;
+    private long startDataTime;
 
     @Column(name = "finish_data_time")
-    private  long finishDataTime;
+    private long finishDataTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "trip_status_id")
-    private TripStatus tripStatus;
+    @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
+    private TripStatus status;
 
-    @Column(name = "descrpition")
-    private String Descriptin;
+    @Column(name = "type")
+    @Enumerated(value = EnumType.STRING)
+    private TripType type;
+
+    @Column(name = "description")
+    private String description;
 
     @Column(name = "cost")
-    private int Cost;
+    private String cost;
 
-    @Column(name = "vehicle")
-    private String Vehicle;
+    @Column(name = "max_companions")
+    private int maxCompanions;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rout")
-    private Rout rout;
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "route_id")
+    private Route route;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private List<User> user;
-
+    @OneToMany(mappedBy = "trip", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Companion> companions;
 
 }
 
