@@ -7,57 +7,57 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Регистрация</title>
 
-    <!--
-    <link rel="icon" type="image/png" href="register/images/icons/favicon.ico" data-th-href="@{/register/images/icons/favicon.ico}"/>
 
-    <link rel="stylesheet" type="text/css" href="register/vendor/bootstrap/css/bootstrap.min.css" data-th-href="@{/register/vendor/bootstrap/css/bootstrap.min.css}">
 
-    <link rel="stylesheet" type="text/css" href="register/fonts/font-awesome-4.7.0/css/font-awesome.min.css" data-th-href="{/register/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
 
-    <link rel="stylesheet" type="text/css" href="register/fonts/Linearicons-Free-v1.0.0/icon-font.min.css" data-th-href="@{/register/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
+    <link rel="icon" type="image/png" href="../static/images/reg/icons/favicon.ico" data-th-href="@{/images/reg/icons/favicon.ico}"/>
 
-    <link rel="stylesheet" type="text/css" href="register/fonts/iconic/css/material-design-iconic-font.min.css" data-th-href="@{/register/fonts/iconic/css/material-design-iconic-font.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendor/reg/bootstrap/css/bootstrap.min.css" data-th-href="@{/vendor/reg/bootstrap/css/bootstrap.min.css}">
 
-    <link rel="stylesheet" type="text/css" href="register/vendor/animate/animate.css" data-th-href="@{/register/vendor/animate/animate.css}">
+    <link rel="stylesheet" type="text/css" href="../static/fonts/reg/font-awesome-4.7.0/css/font-awesome.min.css" data-th-href="@{/fonts/reg/font-awesome-4.7.0/css/font-awesome.min.css}">
 
-    <link rel="stylesheet" type="text/css" href="register/vendor/css-hamburgers/hamburgers.min.css" data-th-href="@{/register/vendor/css-hamburgers/hamburgers.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/fonts/reg/Linearicons-Free-v1.0.0/icon-font.min.css" data-th-href="@{/fonts/reg/Linearicons-Free-v1.0.0/icon-font.min.css}">
 
-    <link rel="stylesheet" type="text/css" href="register/vendor/animsition/css/animsition.min.css" data-th-href="@{/register/vendor/animsition/css/animsition.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/fonts/reg/iconic/css/material-design-iconic-font.min.css" data-th-href="@{/fonts/reg/iconic/css/material-design-iconic-font.min.css}">
 
-    <link rel="stylesheet" type="text/css" href="register/vendor/select2/select2.min.css" data-th-href="@{/register/vendor/select2/select2.min.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendor/reg/animate/animate.css" data-th-href="@{/vendor/reg/animate/animate.css}">
 
-    <link rel="stylesheet" type="text/css" href="register/vendor/daterangepicker/daterangepicker.css" data-th-href="@{/register/vendor/daterangepicker/daterangepicker.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendor/reg/css-hamburgers/hamburgers.min.css" data-th-href="@{/vendor/reg/css-hamburgers/hamburgers.min.css}">
 
-    <link rel="stylesheet" type="text/css" href="register/css/util.css" data-th-href="@{/register/css/util.css}">
-    <link rel="stylesheet" type="text/css" href="register/css/main.css" data-th-href="@{/register/css/main.css}">
+    <link rel="stylesheet" type="text/css" href="../static/vendor/reg/animsition/css/animsition.min.css" data-th-href="@{/vendor/reg/animsition/css/animsition.min.css}">
 
-    -->
+    <link rel="stylesheet" type="text/css" href="../static/vendor/reg/select2/select2.min.css" data-th-href="@{/vendor/reg/select2/select2.min.css}">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../static/vendor/reg/daterangepicker/daterangepicker.css" data-th-href="@{/vendor/reg/daterangepicker/daterangepicker.css}">
+
+    <link rel="stylesheet" type="text/css" href="../static/css/reg/util.css" data-th-href="@{/css/reg/util.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/reg/main.css" data-th-href="@{/css/reg/main.css}">
 </head>
-<!--
+
 <body style="background-color: #999999;">
 
 <div class="limiter">
     <div class="container-login100">
-        <div class="login100-more" style="background-image: url('images/bg-01.jpg');"></div>
+        <div class="login100-more" style="background-image: url('/images/reg/bg-01.jpg');"></div>
 
         <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
-            <form class="login100-form validate-form">
-					<span class="login100-form-title p-b-59">
-						Sign Up
-					</span>
+            <form  data-th-action="@{/register}" method="post" class="login100-form validate-form">
+                <span class="login100-form-title p-b-59">
+                   <fieldset class="text-center">Welcome to Innder</fieldset>
+                    <div class="text-center">Sign Up</div>
+                </span>
+
+                <!--  надо будет увязать с БД-->
 
                 <div class="wrap-input100 validate-input" data-validate="Name is required">
-                    <span class="label-input100">Full Name</span>
+                    <span class="label-input100">Fist Name</span>
                     <input class="input100" type="text" name="name" placeholder="Name...">
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: innder@service.com">
                     <span class="label-input100">Email</span>
-                    <input class="input100" type="text" name="email" placeholder="Email addess...">
+                    <input class="input100" type="text" name="email" placeholder="Email address...">
                     <span class="focus-input100"></span>
                 </div>
 
@@ -69,13 +69,13 @@
 
                 <div class="wrap-input100 validate-input" data-validate = "Password is required">
                     <span class="label-input100">Password</span>
-                    <input class="input100" type="text" name="pass" placeholder="*************">
+                    <input class="input100" type="password" name="password" placeholder="*************">
                     <span class="focus-input100"></span>
                 </div>
 
                 <div class="wrap-input100 validate-input" data-validate = "Repeat Password is required">
                     <span class="label-input100">Repeat Password</span>
-                    <input class="input100" type="text" name="repeat-pass" placeholder="*************">
+                    <input class="input100" type="password" name="confirm" placeholder="*************">
                     <span class="focus-input100"></span>
                 </div>
 
@@ -83,12 +83,12 @@
                     <div class="contact100-form-checkbox">
                         <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                         <label class="label-checkbox100" for="ckb1">
-								<span class="txt1">
-									I agree to the
-									<a href="#" class="txt2 hov1">
-										Terms of User
-									</a>
-								</span>
+                            <span class="txt1">
+                                I agree to the
+                                <a href="#" class="txt2 hov1">
+                                    Terms of User
+                                </a>
+                            </span>
                         </label>
                     </div>
 
@@ -103,7 +103,7 @@
                         </button>
                     </div>
 
-                    <a href="#" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+                    <a href="http://localhost:7788/login" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
                         Sign in
                         <i class="fa fa-long-arrow-right m-l-5"></i>
                     </a>
@@ -114,67 +114,35 @@
 </div>
 
 
-<script data-th-src="register/vendor/jquery/jquery-3.2.1.min.js"></script>
+<script data-th-src="@{vendor/reg/jquery/jquery-3.2.1.min.js}"></script>
 
-<script data-th-src="register/vendor/animsition/js/animsition.min.js"></script>
+<script data-th-src="@{vendor/reg/animsition/js/animsition.min.js}"></script>
 
-<script data-th-src="register/vendor/bootstrap/js/popper.js"></script>
-<script data-th-src="register/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script data-th-src="@{vendor/reg/bootstrap/js/popper.js}"></script>
+<script data-th-src="@{vendor/reg/bootstrap/js/bootstrap.min.js}"></script>
 
-<script data-th-src="register/vendor/select2/select2.min.js"></script>
+<script data-th-src="@{vendor/reg/select2/select2.min.js}"></script>
 
-<script data-th-src="register/vendor/daterangepicker/moment.min.js"></script>
-<script data-th-src="register/vendor/daterangepicker/daterangepicker.js"></script>
+<script data-th-src="@{vendor/reg/daterangepicker/moment.min.js}"></script>
+<script data-th-src="@{vendor/reg/daterangepicker/daterangepicker.js}"></script>
 
-<script data-th-src="register/vendor/countdowntime/countdowntime.js"></script>
+<script data-th-src="@{vendor/reg/countdowntime/countdowntime.js}"></script>
 
-<script data-th-src="register/js/main.js"></script>
+<script data-th-src="@{js/reg/main.js}"></script>
 
+
+
+
+<!--
+<div data-th-if="error">
+   [[ ${error} ]]
+</div>
+<form data-th-action="@{/register}" method="post">
+   <input name="username" placeholder="Логин" required>
+   <input name="password" type="password" placeholder="Пароль" required>
+   <input name="confirm" type="password" placeholder="Подтверждение пароля" required>
+   <button>Регистрация</button>
+</form>
 -->
-
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-<div class="ui-form">
-    <h3 class="text-center">Регистрация</h3>
-
-    <div data-th-if="error">
-        [[ ${error} ]]
-    </div>
-    <form data-th-action="@{/register}" method="post">
-
-        <div class="form-group">
-            <label for=>Email address</label>
-            <input name="username"  class="form-control" placeholder="email" required>
-
-        </div>
-
-        <div class="form-group">
-            <label for=>Пароль</label>
-            <input name="password" class="form-control" type="password"  aria-describedby="emailHelp" placeholder="Пароль" required>
-        </div>
-          <div class="form-group">
-            <label for=>Подтверждение пароля</label>
-            <input name="confirm" class="form-control" type="password" placeholder="Подтверждение пароля" required>
-        </div>
-        <div class="text-center"><button type="submit" class="btn btn-success">Регистрация</button></div>
-    </form>
-    <div class="text-center white">OR</div>
-    <h3 class="text-center">Sign Up Using</h3>
-
-    <div class="social">
-        <span style='padding-left:30px;'> </span>
-        <a href="/" class="facebook"><i class="fab fa-facebook-square"></i>Login with Facebook</a><span style='padding-left:70px;'> </span>
-        <a href="/" class="google-plus"><i class="fab fa-google-plus-square"></i>Login with Google Plus</a>
-    </div>
-    </div>
-    </div>
-        <div class="col-md-6">
-    </div>
-</div>
-</div>
-
-
 </body>
 </html>

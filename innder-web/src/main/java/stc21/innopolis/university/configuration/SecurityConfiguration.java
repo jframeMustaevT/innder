@@ -20,11 +20,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     web
             .ignoring()
             .antMatchers("/resources/**")
-            .antMatchers("/login/**")
+            .antMatchers("/static/**")
             .antMatchers("/css/**")
             .antMatchers("/fonts/**")
             .antMatchers("/images/**")
-            .antMatchers("/js/**");
+            .antMatchers("/js/**")
+            .antMatchers("/vendor/**");
 
   }
 
@@ -35,18 +36,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
           // на главную можно всем
           .antMatchers("/").permitAll()
-            .antMatchers("/css/**", "/js/**").permitAll()
+            .antMatchers("/css/**", "/js/**","/js/**","/fonts/**","/images/**","/vendor/**","/resources/**","/register/**","/login/**").permitAll()
           // на регистрацию - только неаутентифицированным
           .antMatchers("/register").anonymous()
 
           .antMatchers("/admin**").hasRole("ADMIN")
+          .antMatchers("/user**").hasRole("USER")
 
           // все остальные запросы, которые не подпали под правила должны быть аутентифицированы
-          .anyRequest().authenticated()
+            .anyRequest().authenticated()
         .and()
         .formLogin()
           // куда кидаем после успешного логина
-          .loginPage("/login")
+          .loginPage("/index")
           .loginProcessingUrl("/login")
           .defaultSuccessUrl("/")
           .permitAll()
