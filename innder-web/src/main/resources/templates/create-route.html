@@ -4,74 +4,121 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial scale = 1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Google Map Api </title>
+    <title>Твой маршрут </title>
 </HEAD>
 <style>
+    body{
+        background-image: url('/images/login/bg-01.jpg');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+
+    .centered{
+        margin-left: 150px;
+        font-family : "Times New Roman", Times, serif;
+    }
 
     #map {
         height: 400px;
         width: 800px;
+        margin-left: 150px;
+        border-radius: 12px;
     }
 
     #addressCityStart {
         width: 350px;
-        height: 13px;
+        height: 20px;
+        margin-left: 150px;
+        border-radius: 12px;
+        padding-left: 10px;
     }
 
     #addressStreetEnd {
         width: 350px;
-        height: 13px;
-
+        height: 20px;
+        margin-left: 90px;
+        border-radius: 12px;
+        padding-left: 10px;
     }
 
     #addressStreetStart {
         width: 350px;
-        height: 13px;
-        margin-right: 150px;
+        height: 20px;
+        margin-left: 150px;
+        border-radius: 12px;
+        padding-left: 10px;
     }
 
     #addressCityEnd {
         width: 350px;
-        height: 13px;
-        margin-left: 150px
+        height: 20px;
+        margin-left: 90px;
+        border-radius: 12px;
+        padding-left: 10px;
 
     }
 
     #addressStreetNumberEnd {
         width: 250px;
-        height: 13px;
-        margin-left: 250px
+        height: 20px;
+        margin-left: 190px;
+        border-radius: 12px;
+        padding-left: 10px;
     }
 
     #addressStreetNumberStart {
         width: 250px;
-        height: 13px;
-
+        height: 20px;
+        margin-left: 150px;
+        border-radius: 12px;
+        padding-left: 10px;
     }
 
     #buttonConfirmRoute {
+        width: 150px;
         display: block;
+        height: 30px;
+        margin-left: 150px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     }
 
     #buttonRoute {
+        width: 150px;
+        height: 30px;
+        margin-left: 150px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 
     }
     pre.tab{
         font-family: "Times New Roman";
-        font-size: medium;
+        font-size: large;
+        margin-left: 160px;
+    }
+    pre.way{
+        font-family: "Times New Roman";
+        font-size: large;
+        margin-left: 160px;
     }
     .buttonRoute {
-        background-color: #4CAF50;
-        color: black;
-        border: 2px solid black ;
+        background: #a64bf4;
+        background: -webkit-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        background: -o-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        background: -moz-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        background: linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        border: 1px outset black ;
         border-radius: 2px
     }
 
 
     .buttonConfirmRoute {
-        background-color: #4CAF50;
-        color: black;
-        border: 2px solid black;
+        background: #a64bf4;
+        background: -webkit-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        background: -o-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        background: -moz-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        background: linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        border: 1px outset black;
         border-radius: 2px
     }
 
@@ -149,7 +196,9 @@
     }
 </style>
 <body>
-<h1>Постройте маршрут поездки</h1>
+<div class="centered">
+    <h1>Построй марушрут</h1>
+</div>
 <div id="myModalType" class="modal2">
     <div class="modal-content2">
         <span class="close2">&times;</span>
@@ -165,20 +214,19 @@
 </div>
 
 <div id="map"></div>
-<div id="right-panel">
-    Дистанция маршрута: <span id="total"></span>
-</div>
-<pre class="tab">Начало пути:                                                                                                         Конец пути:</pre>
+<div id="right-panel"></div>
+<pre class="way">Дистанция маршрута:<span id="total"></span></pre>
+<pre class="tab">Начало пути:                                                                              Конец пути:</pre>
 <form id="form">
     <input id="addressCityStart" name="addressCityStart" type="textbox" placeholder="Введите город (обязательное поле)"
            required/>
     <input id="addressCityEnd" name="addressCityEnd" type="textbox" placeholder="Введите город (обязательное поле)"
-           required/><br>
-    <input id="addressStreetStart" type="textbox" placeholder="Введите улицу и ее номер (необязательное поле)"/>
-    <input id="addressStreetEnd" type="textbox" placeholder="Введите улицу и ее номер (необязательное поле)"/><br>
-    <input id="addressStreetNumberStart" type="textbox" placeholder="Номер улицы (необязательное поле)"/>
-    <input id="addressStreetNumberEnd" type="textbox" placeholder="Номер улицы (необязательное поле)"/><br>
-    <input id="buttonRoute" type="button" class="buttonRoute"  value="Построить маршрут"/><br>
+           required/><hr style="height:2px; visibility:hidden;" />
+    <input id="addressStreetStart" type="textbox" placeholder="Введите улицу (необязательное поле)"/>
+    <input id="addressStreetEnd" type="textbox" placeholder="Введите улицу (необязательное поле)"/><hr style="height:2px; visibility:hidden;" />
+    <input id="addressStreetNumberStart" type="textbox" placeholder="Номер дома (необязательное поле)"/>
+    <input id="addressStreetNumberEnd" type="textbox" placeholder="Номер дома (необязательное поле)"/><hr style="height:2px; visibility:hidden;" />
+    <input id="buttonRoute" type="button" class="buttonRoute"  value="Построить маршрут"/><hr style="height:2px; visibility:hidden;" />
     <input id="buttonConfirmRoute" type="button" class="buttonConfirmRoute" value="Подтвердить маршрут"/>
 
 </form>
@@ -203,17 +251,18 @@
                 method: 'post',
                 url: '/create-route',
                 data: {
-                    startcity: citystart,
-                    endcity: cityend,
-                    startstreet: streetstart,
-                    endstreet: streetend,
-                    streetnumberstart: streetstartnumber,
-                    streetnumberend: streetendnumber
+                    startCity: citystart,
+                    endCity: cityend,
+                    startStreet: streetstart,
+                    endStreet: streetend,
+                    startStreetNumber: streetstartnumber,
+                    endStreetNumber: streetendnumber
                 }
             }).then(response => {
-                localStorage.setItem("routeId", response.data);
+                localStorage.setItem("route", JSON.stringify(response.data));
+                window.location.replace('create-trip');
             });
-            // window.location.replace('create-trip.html');
+
         }else{
             modalEmptyFields.style.display = "block"
         }

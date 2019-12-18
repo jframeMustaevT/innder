@@ -1,10 +1,11 @@
 package stc21.innopolis.university.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "trip")
@@ -45,8 +46,8 @@ public class Trip {
     @Column(name = "max_companions")
     private int maxCompanions;
 
-    @OneToOne(optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "route_id")
+    @OneToOne(optional = false)
+    @JoinColumn(name = "route_id", referencedColumnName = "id")
     private Route route;
 
     @OneToMany(mappedBy = "trip", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
