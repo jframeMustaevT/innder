@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск поездки</title>
+
+    <style>
+        body{
+            background-image: url('/images/login/bg-01.jpg');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+
+        .buttonConfirmSearch {
+            background: #a64bf4;
+            background: -webkit-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+            background: -o-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+            background: -moz-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+            background: linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+            border: 1px outset black;
+            border-radius: 2px
+        }
+
+        #buttonConfirmSearch {
+            width: 150px;
+            display: block;
+            height: 30px;
+            margin-left: 190px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+        .buttonBack {
+            background: #a64bf4;
+            background: -webkit-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+            background: -o-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+            background: -moz-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+            background: linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+            border: 1px outset black;
+            border-radius: 2px
+        }
+
+        #buttonBack {
+            width: 150px;
+            display: block;
+            height: 30px;
+            margin-left: 190px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+
+        #LocStart {
+            width: 250px;
+            height: 20px;
+            margin-left: 190px;
+            border-radius: 12px;
+            padding-left: 10px;
+        }
+
+        #LocEnd {
+            width: 250px;
+            height: 20px;
+            margin-left: 150px;
+            border-radius: 12px;
+            padding-left: 10px;
+        }
+
+        #datePick1{
+            border-radius: 12px;
+            padding-left: 10px;
+            height: 30px;
+            margin-left: 190px;
+        }
+        #datePick2{
+            border-radius: 12px;
+            padding-left: 10px;
+            height: 30px;
+            margin-left: 210px;
+        }
+
+        .datePick1{
+            font-family: "Times New Roman";
+            font-size: large;
+        }
+        .datePick2{
+            font-family: "Times New Roman";
+            font-size: large;
+        }
+
+    </style>
+
+
+</head>
+<body>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<input id="LocStart" class="datePick1" type="textbox" placeholder="Точка отправления (город)"/>
+<input id="LocEnd" class="datePick2" type="textbox" placeholder="Точка прибытия (город)"/><br><br>
+<input id= "datePick1" type="datetime-local">
+<input id= "datePick2" type="datetime-local"><br><br>
+<input id="buttonConfirmSearch" type="button" class="buttonConfirmSearch" value="Поиск"/><br>
+<input id="buttonBack" type="button" class="buttonBack" value="Назад"/>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    function getBack() {
+        window.location.replace('/');
+    }
+    document.getElementById('buttonBack').addEventListener('click', function () {
+        getBack();});
+
+    document.getElementById('buttonConfirmSearch').addEventListener('click', function () {
+        getAndSendData();});
+    function getAndSendData() {
+        var tripStartTime = Date.parse(document.getElementById('datePick1').value);
+        var tripEndTime = Date.parse(document.getElementById('datePick2').value);
+        var LocStart = document.getElementById('LocStart').value;
+        var LocEnd = document.getElementById('LocEnd').value;
+        axios({
+            method: 'post',
+            url: '/search-trip',
+            data: {
+                minStartDataTime: tripStartTime,
+                maxStartDataTime: tripEndTime,
+                startCity: LocStart,
+                endCity: LocEnd
+            }
+        }).then(response => {
+            localStorage.setItem("result", JSON.stringify(response.data));
+            window.location.replace('/trips');
+        });
+    }
+</script>
+</html>
