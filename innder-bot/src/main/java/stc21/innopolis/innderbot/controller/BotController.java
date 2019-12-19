@@ -1,12 +1,12 @@
-package stc21.innopolis.university.controller;
+package stc21.innopolis.innderbot.controller;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import stc21.innopolis.university.bot.InnderTelegramBot;
-import stc21.innopolis.university.entity.RequestToBot;
-import stc21.innopolis.university.entity.ResponseOfBot;
+import stc21.innopolis.innderbot.bot.InnderTelegramBot;
+import stc21.innopolis.innderbot.entity.RequestToBot;
+import stc21.innopolis.innderbot.entity.ResponseOfBot;
 
 @RestController
 @RequestMapping(path = "api/bot")

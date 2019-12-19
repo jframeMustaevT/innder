@@ -1,4 +1,4 @@
-package stc21.innopolis.university.configuration;
+package stc21.innopolis.innderbot.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

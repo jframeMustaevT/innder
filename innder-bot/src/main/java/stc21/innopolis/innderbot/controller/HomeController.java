@@ -1,4 +1,4 @@
-package stc21.innopolis.university.controller;
+package stc21.innopolis.innderbot.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

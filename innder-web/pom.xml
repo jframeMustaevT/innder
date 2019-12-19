@@ -18,9 +18,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>${groupId}</groupId>
+            <groupId>stc21.innopolis.innderbot</groupId>
             <artifactId>innder-bot</artifactId>
-            <version>${version}</version>
+            <version>1.0</version>
         </dependency>
 
         <dependency>

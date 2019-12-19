@@ -1,4 +1,4 @@
-package stc21.innopolis.university.configuration;
+package stc21.innopolis.innderbot.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -11,8 +11,6 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
-@EnableWebMvc
-@ComponentScan("stc21.innopolis.university")
 public class WebMvcConfiguration implements WebMvcConfigurer {
 
     @Autowired
@@ -55,48 +53,4 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
-
-
-    //    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-////        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-////        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
-//        registry.addResourceHandler("/WEB-INF/pages/**").addResourceLocations("/pages/");
-//    }
-//
-//    @Override
-//    public void addViewControllers(ViewControllerRegistry registry) {
-//        //registry.addViewController("/").setViewName("index");
-//    }
-//
-//    @Bean
-//    public InternalResourceViewResolver setupViewResolver() {
-//        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//        resolver.setPrefix("/WEB-INF/pages/");
-//        resolver.setSuffix(".jsp");
-//        //resolver.setViewClass(JstlView.class);
-//
-//        return resolver;
-//    }
-
-//    @Override
-//    public void configureViewResolvers(ViewResolverRegistry registry) {
-//        InternalResourceViewResolver viewResolver =
-//            new InternalResourceViewResolver("/webapp/views/", ".html");
-//        registry.viewResolver(viewResolver);
-//        //UrlBasedViewResolverRegistration jsp = registry.jsp("/webapp/views/", ".html");
-//
-//        //System.out.println(jsp.viewNames());
-//    }
-
-//  @Bean
-//  public InternalResourceViewResolver internalResourceViewResolver(){
-//    InternalResourceViewResolver viewResolver =
-//            new InternalResourceViewResolver("/views/", ".html");
-//    return viewResolver;
-//  }
-
-
-
-
 }

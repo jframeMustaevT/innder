@@ -1,4 +1,4 @@
-package stc21.innopolis.university.bot;
+package stc21.innopolis.innderbot.bot;
 
 
 import org.springframework.beans.factory.annotation.Qualifier;

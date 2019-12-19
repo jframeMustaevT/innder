@@ -1,4 +1,4 @@
-package stc21.innopolis.university.entity;
+package stc21.innopolis.innderbot.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

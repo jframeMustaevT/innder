@@ -1,4 +1,4 @@
-package stc21.innopolis.university;
+package stc21.innopolis.innderbot;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.springframework.boot.SpringApplication;
@@ -7,14 +7,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.telegram.telegrambots.ApiContextInitializer;
-import stc21.innopolis.university.bot.TokenStorage;
+import stc21.innopolis.innderbot.bot.TokenStorage;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 @SpringBootApplication
 @EnableWebMvc
-@EnableAsync
+//@EnableAsync
 public class InnderBotApplication {
     public static void main(String[] args) {
         //Initialize application context for telegram bot

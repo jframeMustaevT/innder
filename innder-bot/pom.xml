@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-
+    <groupId>stc21.innopolis.innderbot</groupId>
     <artifactId>innder-bot</artifactId>
     <name>innder-bot</name>
 

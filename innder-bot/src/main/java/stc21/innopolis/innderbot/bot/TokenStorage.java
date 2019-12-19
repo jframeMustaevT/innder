@@ -1,4 +1,4 @@
-package stc21.innopolis.university.bot;
+package stc21.innopolis.innderbot.bot;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;

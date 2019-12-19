@@ -4,7 +4,7 @@ package stc21.innopolis.university.interaction.bot;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import stc21.innopolis.university.entity.ResponseOfBot;
+import stc21.innopolis.innderbot.entity.ResponseOfBot;
 
 @Component
 public class InteractionWithBot {
