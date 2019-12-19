@@ -27,10 +27,9 @@ public class RouteController {
 
     @RequestMapping(value = "/create-route", method = RequestMethod.POST)
     @ResponseBody
-    public Long set(@RequestBody Route route) {
-        Route document = route;
-        routeRepository.save(document);
-        return document.getId();
+    public Route set(@RequestBody Route route) {
+        routeRepository.save(route);
+        return route;
     }
     @RequestMapping(value = "/create-route")
     public ModelAndView root() {

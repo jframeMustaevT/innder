@@ -2,45 +2,269 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>СОЗДАЙ СВОЙ ТРИП!!!!</title>
+    <title>Твоя поездка</title>
 </head>
 <style>
+    body{
+        background-image: url('/images/login/bg-01.jpg');
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
     #map {
         height: 200px;
-        width: 400px;
-    }
-    #DescriptionBox {
-        height: 200px;
-        width: 400px;
+        width: 450px;
+        border-radius: 12px;
+        margin-left: 300px;
     }
 
     #CostBox {
-        width: 450px;
-        height: 13px;
+        width: 150px;
+        height: 30px;
+        border-radius: 12px;
+        padding-left: 10px;
+    }
+    #tarea{
+        border-radius: 12px;
+        padding-left: 10px;
+
+    }
+
+    #buttonBack{
+        width: 150px;
+        height: 30px;
+        margin-left: 300px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+    }
+
+    #buttonConfirmTrip{
+        width: 150px;
+        height: 30px;
+        margin-left: 150px;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    #TransportType{
+        border-radius: 12px;
+        padding-left: 10px;
+        height: 30px;
+    }
+
+    #datePick{
+        border-radius: 12px;
+        padding-left: 10px;
+        height: 30px;
+    }
+
+    .header{
+        font-family: "Times New Roman";
+        font-size: large;
+        margin-left: 300px;
+    }
+
+    .cost{
+        font-family: "Times New Roman";
+        font-size: large;
+        margin-left: 300px;
+    }
+
+    .description{
+        font-family: "Times New Roman";
+        font-size: large;
+        margin-left: 300px;
+    }
+
+    .type{
+        font-family: "Times New Roman";
+        font-size: large;
+        margin-left: 300px;
+    }
+
+    .datepicker{
+        font-family: "Times New Roman";
+        font-size: large;
+        margin-left: 300px;
+    }
+
+    .buttonConfirmTrip{
+        background: #a64bf4;
+        background: -webkit-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        background: -o-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        background: -moz-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        background: linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        border: 1px outset black ;
+        border-radius: 2px
+    }
+
+    .buttonBack{
+        background: #a64bf4;
+        background: -webkit-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        background: -o-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        background: -moz-linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        background: linear-gradient(right, #fc00ff, #9F51F3, #fc00ff, #9F51F3);
+        border: 1px outset black;
+        border-radius: 2px
+    }
+
+    .spancost {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .spantime {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    }
+
+    .modal-content2 {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+    .spantype {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    }
+
+    .modal-content3 {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .close2 {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close2:hover,
+    .close2:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .close3 {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close3:hover,
+    .close3:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
     }
 
 </style>
 <body>
-<h1>ТРИП</h1>
+<div id="modalInvalidCost" class="spancost">
+    <div class="modal-content2">
+        <span class="close2">&times;</span>
+        <p>Ошибка, проверьте что цена поездки введена правильно.</p>
+    </div>
+</div>
+<div id="modalInvalidTime" class="spantime">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Ошибка, проверьте что введенные данные по времени начала поездки правильны и заполнены.</p>
+    </div>
+
+</div>
+<div id="modalInvalidType" class="spantype">
+    <div class="modal-content3">
+        <span class="close3">&times;</span>
+        <p>Ошибка, выберите ваш тип транспорта.</p>
+    </div>
+
+</div>
+<div class="header">
+    <h1>Введите описание поездки</h1>
+</div>
 <div id="map"></div>
+<hr style="height:2px; visibility:hidden;" />
+<div class="description">
 Описание:
 <br><textarea id="tarea" cols="60"  rows="10" placeholder="Введите описание"></textarea><br>
-Стоимость:
-<br><input id="CostBox" type="textbox" placeholder="Напишите стоимость поездки(числом в рублях)"/><br>
+</div><hr style="height:2px; visibility:hidden;" />
+<div class="cost"> Стоимость (в рублях):
+<input id="CostBox" type="textbox" /><br>
+</div><hr style="height:2px; visibility:hidden;" />
+<div class="type">
 Описание транспорта:
 <select id="TransportType">
     <option disabled selected>Выберите</option>
-    <option value="OwnCar">Личный транспорт</option>
-    <option value="Bus">Автобус</option>
-    <option value="CarSharing">Каршеринг</option>
+    <option value="OWNERCAR">Личный транспорт</option>
+    <option value="BUS">Автобус</option>
+    <option value="CARSHARING">Каршеринг</option>
 </select><br>
+</div><hr style="height:2px; visibility:hidden;" />
+<div class="datepicker">
 Дата начала поездки:
 <input id= "datePick" type="datetime-local"><br>
-<input id="buttonBack" type="submit" value="Назад"/>
-<input id="buttonConfirmTrip" type="submit" value="Подтвердить поездку"/>
-<script>
-    src="https://unpkg.com/axios/dist/axios.min.js"
-</script>
+</div><hr style="height:2px; visibility:hidden;" />
+<input id="buttonBack" type="button" class="buttonBack" value="Назад"/>
+<input id="buttonConfirmTrip" type="button" class="buttonConfirmTrip" value="Подтвердить поездку"/>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     document.getElementById('buttonConfirmTrip').addEventListener('click', function () {
         getAndSendData();});
@@ -49,42 +273,43 @@
         var description = document.getElementById('tarea').value;
         var transportType = document.getElementById('TransportType').value;
         var travelCost = document.getElementById('CostBox').value;
-        var routeId = localStorage.getItem("routeId");
-        var toDelete = false;
+        var route = localStorage.getItem("route");
+        if (isNaN(tripStartTime) || tripStartTime<Date.now()){
+            modalInvalidTime.style.display = "block";
+            return false;
+        }
+        if (transportType === "Выберите" ){
+            modalInvalidType.style.display = "block";
+        }
+        if  (isNaN(travelCost) || travelCost < 0 || travelCost === ''){
+            modalInvalidCost.style.display = "block";
+            return false;
+        }
         axios({
             method: 'post',
             url: '/create-trip',
             data: {
-                routeId: routeId,
-                tripStartTime:tripStartTime,
+                route: JSON.parse(route),
+                startDataTime: tripStartTime,
                 description: description,
-                transportType: transportType,
-                travelCost: travelCost,
-                toDelete : toDelete
+                type: transportType,
+                cost: travelCost,
             }
         });
-        window.location.replace('index.html');
+        window.location.replace('/');
     }
     function getBack() {
-        var toDelete = true;
-        axios({
-            method: 'post',
-            url: '/create-trip',
-            data: {
-                toDelete : toDelete
-            }
-        });
-        window.location.replace('create-route.html');
+        window.location.replace('create-route');
     }
     document.getElementById('buttonBack').addEventListener('click', function () {
         getBack();});
 
 
     function initMap() {
-        myOptions = {
-            zoom: 7,
-            center: {},
-        },
+        var myOptions = {
+                zoom: 7,
+                center: {},
+            },
             map = new google.maps.Map(document.getElementById('map'), myOptions),
             directionsService = new google.maps.DirectionsService,
             directionsDisplay = new google.maps.DirectionsRenderer({
@@ -107,6 +332,46 @@
             }
         });
     }
+
+    var modalInvalidTime = document.getElementById("modalInvalidTime");
+    var modalInvalidCost = document.getElementById("modalInvalidCost");
+    var modalInvalidType = document.getElementById("modalInvalidType");
+
+
+    var spantime = document.getElementsByClassName("close")[0];
+    var spancost = document.getElementsByClassName("close2")[0];
+    var spantype = document.getElementsByClassName("close3")[0];
+
+    spantime.onclick = function () {
+        modalInvalidTime.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+        if (event.target === modalInvalidTime) {
+            modalInvalidTime.style.display = "none";
+        }
+    };
+
+    spancost.onclick = function () {
+        modalInvalidCost.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+        if (event.target === modalInvalidCost) {
+            modalInvalidCost.style.display = "none";
+        }
+    };
+
+    spantype.onclick = function () {
+        modalInvalidType.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+        if (event.target === modalInvalidType) {
+            modalInvalidType.style.display = "none";
+        }
+    };
+
 
 
 </script>

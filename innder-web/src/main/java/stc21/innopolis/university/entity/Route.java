@@ -16,6 +16,9 @@ public class Route {
     @SequenceGenerator(name = "ROUTE_GENERATOR", allocationSize = 1, sequenceName = "route_id_seq")
     private long id;
 
+    @OneToOne(mappedBy = "route")
+    private Trip trip;
+
     @Column (name = "start_city", nullable = false)
     private String startCity;
 

@@ -21,7 +21,8 @@ public class User implements UserDetails {
     @Column(name = "id", nullable = false)
     private long id;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "user_id")
     private Collection<Authority> authorities;
 
     @Column(name = "email", nullable = false)
