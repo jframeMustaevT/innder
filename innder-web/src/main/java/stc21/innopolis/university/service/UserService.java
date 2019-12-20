@@ -60,4 +60,10 @@ public class UserService implements UserDetailsService {
             true);
     repository.save(user);
   }
+
+  public void saveChatId(String telegramName, String chatId){
+    User user = repository.findByTelegramName(telegramName);
+    user.setTelegramChatId(chatId);
+    repository.save(user);
+  }
 }

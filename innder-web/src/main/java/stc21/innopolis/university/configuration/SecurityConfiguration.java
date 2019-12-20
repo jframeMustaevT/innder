@@ -36,6 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
           // на главную можно всем
           .antMatchers("/").permitAll()
+            .antMatchers("/api/**").permitAll()
             .antMatchers("/css/**", "/js/**","/js/**","/fonts/**","/images/**","/vendor/**","/resources/**","/register/**","/login/**").permitAll()
           // на регистрацию - только неаутентифицированным
           .antMatchers("/register").anonymous()

@@ -11,4 +11,5 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
     public User findByUsername(String username);
 
+    public User findByTelegramName(String telegramName);
 }
