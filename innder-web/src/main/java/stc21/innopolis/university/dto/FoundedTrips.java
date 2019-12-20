@@ -15,7 +15,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class FoundedTrips implements Serializable {
 
-    private long id;
+
 
     private long startDataTime;
 
@@ -30,6 +30,8 @@ public class FoundedTrips implements Serializable {
     private String endLocation;
 
     private String userName;
+
+    private long id;
 
     public FoundedTrips(Trip trip) {
         this.id = trip.getId();

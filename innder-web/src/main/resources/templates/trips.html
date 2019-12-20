@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <style>
+        .buttonBack {
+            border: 1px outset black;
+            border-radius: 2px
+        }
+
+        #buttonBack {
+            width: 150px;
+            height: 30px;
+            border-radius: 12px;
+            margin-left: 100px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+        .buttonMenu {
+            border: 1px outset black;
+            border-radius: 2px
+        }
+
+        #buttonMenu {
+            width: 150px;
+            height: 30px;
+            margin-left: 690px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+    </style>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/b-1.6.1/datatables.min.css"/>
+
+</head>
+<body>
+<table id="table_id" class="display">
+</table><br><br><br>
+<input id="buttonBack" type="button" class="buttonBack" value="Назад"/>
+<input id="buttonMenu" type="button" class="buttonMenu" value="Главная страница"/>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.datatables.net/v/dt/jq-3.3.1/dt-1.10.20/b-1.6.1/datatables.min.js"></script>
+<script>
+    function getBack() {
+        window.location.replace('/search-trip');
+    }
+    document.getElementById('buttonBack').addEventListener('click', function () {
+        getBack();});
+    function getToMain() {
+        window.location.replace('/');
+    }
+    document.getElementById('buttonMenu').addEventListener('click', function () {
+        getToMain();});
+    function myFunction(id) {
+        axios({
+            method: 'post',
+            url: '/trips',
+            data: {
+                id: id
+            }
+        }).then(response => {
+            alert("Вы подписались на поездку")
+        });
+    }
+
+    $(document).ready(function () {
+        // var dataSet = JSON.parse('[{"startDataTime":1577610120000,"tripType":"Личный автомобиль","description":"123","cost":"123","startLocation":"Казань Мусина 9","endLocation":"Иннополис Спортивная 108","userName":"","id":1}]');
+        var dataSet = JSON.parse(localStorage.getItem("result"));
+        $('#table_id').DataTable({
+            data: dataSet,
+            columns: [
+                {
+                    title: "Дата начала поездки", data: "startDataTime",
+                    render: function (data) {
+                        return new Date(+data).toLocaleString();
+                    }
+                },
+                {title: "Тип транспорта", data: "tripType"},
+                {title: "Описание", data: "description"},
+                {title: "Стоимость", data: "cost"},
+                {title: "Начало маршрута", data: "startLocation"},
+                {title: "Конец маршрута", data: "endLocation"},
+                {title: "Имя пользователя", data: "userName"},
+                {
+                    title: "", data: "id",
+                    render: function (data) {
+                        return "<button onclick=\"myFunction(" + data + ")\">Присоединиться</button>";
+                    }
+                }
+            ]
+        });
+    });
+
+</script>
+</body>
+</html>
