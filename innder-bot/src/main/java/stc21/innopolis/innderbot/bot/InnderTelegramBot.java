@@ -7,24 +7,30 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.User;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import stc21.innopolis.innderbot.interaction.innder.InteractionWithInnder;
 
 
 @Component
 public class InnderTelegramBot extends TelegramLongPollingBot {
 
-    private String botToken;
+    final private String botToken;
+    final private InteractionWithInnder innder;
 
-    public InnderTelegramBot(@Qualifier(value = "TelegramToken") String token) {
+    public InnderTelegramBot(@Qualifier(value = "TelegramToken") String token,
+                             InteractionWithInnder innder
+    ) {
         super();
         this.botToken = token;
+        this.innder = innder;
     }
 
     @Override
     public synchronized void onUpdateReceived(Update update) {
         Message message = update.getMessage();
-        String charId = message.getChatId().toString();
         if (message != null && message.hasText()) {
+            String charId = message.getChatId().toString();
             switch (message.getText()) {
                 case "/start":
                     String answer = "I'm a bot assistant service Innder. I can help you to use Innder service.\nChoose the available commands:\n" +
@@ -32,6 +38,12 @@ public class InnderTelegramBot extends TelegramLongPollingBot {
                             "/setting - in developing\n" +
                             "/hello - I'll say hello))\n";
                     sendMessageToChat(charId, answer);
+                    User user = message.getFrom();
+                    String telegramName = "";
+                    if (user != null && !user.getBot()) {
+                        telegramName = user.getUserName();
+                    }
+                    innder.saveChatId(telegramName, charId);
                     break;
                 case "/hello":
                     sendMessageToChat(charId, "Hello my friend");
@@ -59,7 +71,7 @@ public class InnderTelegramBot extends TelegramLongPollingBot {
         return this.botToken;
     }
 
-    public synchronized boolean sendMessageToChat(String chatId, String message){
+    public synchronized boolean sendMessageToChat(String chatId, String message) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(chatId);
@@ -68,7 +80,7 @@ public class InnderTelegramBot extends TelegramLongPollingBot {
             execute(sendMessage);
         } catch (TelegramApiException e) {
             //todo add logger
-            System.out.println("Bot don't sens message to chatId: "+chatId);
+            System.out.println("Bot don't sens message to chatId: " + chatId);
             e.printStackTrace();
             return false;
         }

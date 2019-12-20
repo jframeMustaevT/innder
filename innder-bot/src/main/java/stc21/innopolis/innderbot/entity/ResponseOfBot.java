@@ -24,4 +24,9 @@ public class ResponseOfBot {
     public void setAnswer(String answer) {
         this.answer = answer;
     }
+
+    public ResponseOfBot(String chatId, String answer) {
+        this.chatId = chatId;
+        this.answer = answer;
+    }
 }

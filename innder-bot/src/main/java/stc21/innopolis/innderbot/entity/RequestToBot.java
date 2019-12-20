@@ -23,4 +23,9 @@ public class RequestToBot {
     public void setMessage(String message) {
         this.message = message;
     }
+
+    public RequestToBot(String chatId, String message) {
+        this.chatId = chatId;
+        this.message = message;
+    }
 }

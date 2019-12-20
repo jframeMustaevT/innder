@@ -22,7 +22,7 @@ public class BotController {
     public ResponseOfBot sendMessage(@RequestBody RequestToBot requestToBot){
         String chatId = requestToBot.getChatId();
         String message = requestToBot.getMessage();
-        ResponseOfBot response= new ResponseOfBot();
+        ResponseOfBot response= new ResponseOfBot("","");
         if (chatId == null || chatId.trim().length()==0
                 || message == null || message.trim().length()==0){
             response.setChatId("");
