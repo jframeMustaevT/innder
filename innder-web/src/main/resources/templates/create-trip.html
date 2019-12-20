@@ -295,8 +295,10 @@
                 type: transportType,
                 cost: travelCost,
             }
-        });
+        }).then(response => {
+        window.alert(response.data);
         window.location.replace('/');
+
     }
     function getBack() {
         window.location.replace('create-route');

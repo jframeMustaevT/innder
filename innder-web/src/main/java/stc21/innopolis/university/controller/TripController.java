@@ -35,11 +35,13 @@ public class TripController {
 
     @RequestMapping(value = "/create-trip", method = RequestMethod.POST)
     @ResponseBody
-    public void set(@RequestBody Trip trip) {
-        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String set(@RequestBody Trip trip) {
+        User currentUser = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         trip.setOwner(currentUser);
         trip.setStatus(TripStatus.ACTIVE);
         tripRepository.save(trip);
+        String message = "sometext";
+        return message;
     }
 
     @RequestMapping(value = "/create-trip")
