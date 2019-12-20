@@ -40,8 +40,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
           // на регистрацию - только неаутентифицированным
           .antMatchers("/register").anonymous()
 
-          .antMatchers("/admin**").hasRole("ADMIN")
-          .antMatchers("/user**").hasRole("USER")
+          .antMatchers("/admin/**").hasRole("ADMIN")
+          .antMatchers("/user/**").hasRole("USER")
 
           // все остальные запросы, которые не подпали под правила должны быть аутентифицированы
             .anyRequest().authenticated()

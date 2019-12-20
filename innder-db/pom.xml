@@ -35,9 +35,9 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>6.0.8</version>
                 <configuration>
-                    <url>${database.url}</url>
-                    <user>${database.user}</user>
-                    <password>${database.password}</password>
+                    <url>jdbc:postgresql://localhost:5432/postgres</url>
+                    <user>postgres</user>
+                    <password>123</password>
                     <locations>filesystem:sql</locations>
                 </configuration>
                 <executions>

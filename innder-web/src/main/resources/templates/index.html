@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Индер!</title>
+    <title>Innder</title>
 
 
 
@@ -14,32 +14,581 @@
 
 
 </head>
+<body>
+
+<!-- ***** Header Area Start ***** -->
+<header class="header_area animated">
+
+    <nav class="navbar navbar-light" style="background-color: #884bdf;">
+        <div class="container">
+            <a class="navbar-brand" style="font-family: 'Permanent Marker', cursive;"><span style='padding-left:10px;'> </span><span></span>INNDER</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+            </button>
+
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a data-th:href="@{/search}"><form class="form-inline my-2 my-lg-3">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти поездку</button> <span style='padding-left:10px;'> </span>
+                    <li class="nav-item"><a  data-toggle="modal" data-target="#modalAppointment"><input class="btn btn-primary" href="http://localhost:80/create-route" type="button" value="Предложить поездку"></a></li><span style='padding-left:10px;'> </span>
+                    <li class="nav-item"><a data-th-include="/fragments/layout :: registerFragment">Регистрация</a></li></i><span style='padding-left:10px;'> </span>
+                    <li class="nav-item"><a data-th-include="/fragments/layout :: loginFragment">Войти</a></li>
+                    <li class="nav-item"><a data-th-include="/fragments/layout :: logoutFragment">Выйти</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    </div>
+    </div>
+
+    </div>
+    </div>
+</header>
+
+
+<!-- ***** Wellcome Area Start ***** -->
+
+<section class="wellcome_area clearfix" id="home">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="special_description_img">
+                <img src="images/ind/bg-img/innder_project-1.jpg" alt="">
+            </div>
+            <div class="col-12 col-md">
+                <div class="wellcome-heading">
+                    <h2>Innde</h2>
+                    <h3>R</h3>
+                    <p>Everything Innder</p>
+                </div>
+                <div class="get-start-area">
+
+                    <!-- Form Start -->
+                    <form action="#" method="post" class="form-inline">
+                        <input type="submit" class="submit" href="http://localhost:80/search-trip" value="Найти поездку">
+                    </form>
+                    <!-- Form End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Welcome thumb -->
+    <div class="welcome-thumb wow fadeInDown" data-wow-delay="0.5s">
+        <img src="images/ind/bg-img/welcome-innder.png" alt="">
+    </div>
+</section>
+<!-- ***** Wellcome Area End ***** -->
+
+<!-- ***** Special Area Start ***** -->
+<section class="special-area bg-light section_padding_100" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!-- Section Heading Area -->
+                <div class="section-heading text-center">
+                    <h2  style="font-family: 'Permanent Marker', cursive;">Why Is It  Innder</h2>
+                    <div class="line-shape"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Single Special Area -->
+            <div class="col-12 col-md-4">
+                <div class="single-special text-center wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="single-icon">
+                        <i class="far fa-sticky-note"></i>
+                    </div>
+                    <h4 style="font-family: 'Permanent Marker', cursive;">Easy to use</h4>
+                    <p class="text-left" style="font-family: 'Permanent Marker', cursive;">Сервис  Инндер предназначен для поиска попутчиков и планирования совместных поездок. Сервис призван стать удобной альтернативой www.blablacar.ru, который теперь стал платным.</p>
+                </div>
+            </div>
+            <!-- Single Special Area -->
+            <div class="col-12 col-md-4">
+                <div class="single-special text-center wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="single-icon">
+                        <i class="fas fa-biohazard"></i>
+                    </div>
+                    <h4 style="font-family: 'Permanent Marker', cursive;">Powerful Design and functionality</h4>
+                    <p class="text-left" style="font-family: 'Pinyon Script', cursive;">Создания и удаление своих маршрутов;</p>
+                    <p class="text-left" style="font-family: 'Pinyon Script', cursive;">Создание и удаление своих поездок;</p>
+                    <p class="text-left" style="font-family: 'Pinyon Script', cursive;"> Бронирование участия в чужих поездках;</p>
+                    <p class="text-left" style="font-family: 'Pinyon Script', cursive;"> Отмена бронирования участия в чужих поездках, как до подтверждения, так и после;</p>
+                    <p class="text-left" style="font-family: 'Pinyon Script', cursive;"> Подтверждение/отклонение броней от других пользователей в своих поездках;</p>
+                    <p class="text-left" style="font-family: 'Pinyon Script', cursive;">  Получение оповещений о новых заявках в активных поездках;</p>
+                    <p class="text-left" style="font-family: 'Pinyon Script', cursive;">  Подтверждение бронирований заявок;</p>
+                </div>
+            </div>
+            <!-- Single Special Area -->
+            <div class="col-12 col-md-4">
+                <div class="single-special text-center wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="single-icon">
+                        <i class="fab fa-battle-net"></i>
+                    </div>
+                    <h4 style="font-family: 'Permanent Marker', cursive;">Feature development</h4>
+                    <p class="text-left" style="font-family: 'Permanent Marker', cursive;">Мы всегда рады нашим пользоватедям Innder и будем постоянно совершествоаться и дарить вам новые фичи</p>
+                    <p class="text-left" style="font-family: 'Permanent Marker', cursive;">Формирование отзывов и оценок о других пользователях, соучастниках в поездках;</p>
+                    <p class="text-left" style="font-family: 'Permanent Marker', cursive;">Формирование запроса в службу поддержки.</p>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Special Description Area -->
+    <div class="special_description_area mt-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="special_description_img">
+                        <img src="images/ind/bg-img/speccial.png" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xl-5 ml-xl-auto">
+                    <div class="special_description_content">
+                        <h2 style="font-family: 'Permanent Marker', cursive;">Meet , Communicate, travel</h2>
+                        <h2 style="font-family: 'Permanent Marker', cursive;">Patch into telegramBot</h2>
+                        <p style="font-family: 'Permanent Marker', cursive;">Say hello to our boot, so that he can inform about new fellow travelers.</p>
+                        <div class="app-download-area">
+                            <div class="app-download-btn wow fadeInUp" data-wow-delay="0.2s">
+
+
+                            </div>
+                            <div class="app-download-btn wow fadeInDown" data-wow-delay="0.4s">
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Special Area End ***** -->
+
+<!-- ***** Video Area Start ***** -->
+<div class="video-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="video-area" style="background-image: url(images/ind/bg-img/video.jpeg);">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- ***** Video Area End ***** -->
+
+<!-- ***** Cool Facts Area Start ***** -->
+<section class="cool_facts_area clearfix">
+    <div class="container">
+        <div class="row">
+            <!-- Single Cool Fact-->
+            <div class="col-12 col-md-3 col-lg-3">
+                <div class="single-cool-fact d-flex justify-content-center wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="counter-area">
+
+                    </div>
+                    <div class="cool-facts-content">
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- Single Cool Fact-->
+            <div class="col-12 col-md-3 col-lg-3">
+                <div class="single-cool-fact d-flex justify-content-center wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="counter-area">
+
+                    </div>
+                    <div class="cool-facts-content">
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- Single Cool Fact-->
+            <div class="col-12 col-md-3 col-lg-3">
+                <div class="single-cool-fact d-flex justify-content-center wow fadeInUp" data-wow-delay="0.6s">
+                    <div class="counter-area">
+
+                    </div>
+                    <div class="cool-facts-content">
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- Single Cool Fact-->
+            <div class="col-12 col-md-3 col-lg-3">
+                <div class="single-cool-fact d-flex justify-content-center wow fadeInUp" data-wow-delay="0.8s">
+                    <div class="counter-area">
+
+                    </div>
+                    <div class="cool-facts-content">
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Cool Facts Area End ***** -->
+
+<!-- ***** App Screenshots Area Start ***** -->
+<section class="app-screenshots-area bg-white section_padding_0_100 clearfix" id="screenshot">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <!-- Heading Text  -->
+                <div class="section-heading">
+                    <h2 style="font-family: 'Permanent Marker', cursive;">App Screenshots</h2>
+                    <div class="line-shape"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <!-- App Screenshots Slides  -->
+                <div class="app_screenshots_slides owl-carousel">
+                    <div class="single-shot">
+                        <img src="images/ind/scr-img/innder-image-1.jpg" alt="">
+                    </div>
+                    <div class="single-shot">
+                        <img src="images/ind/scr-img/innder-image-2.jpg" alt="">
+                    </div>
+                    <div class="single-shot">
+                        <img src="images/ind/scr-img/innder-image-3.jpg" alt="">
+                    </div>
+                    <div class="single-shot">
+                        <img src="images/ind/scr-img/innder-image-4.jpg" alt="">
+                    </div>
+                    <div class="single-shot">
+                        <img src="images/ind/scr-img/innder-image-5.jpg" alt="">
+                    </div>
+                    <div class="single-shot">
+                        <img src="images/ind/scr-img/innder-image-2.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** App Screenshots Area End *****====== -->
+
+
+<!-- ***** Client Feedback Area Start ***** -->
+<section class="clients-feedback-area bg-white section_padding_100 clearfix" id="testimonials">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10">
+                <div class="slider slider-for">
+                    <!-- Client Feedback Text  -->
+                    <div class="client-feedback-text text-center">
+                        <div class="client">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="client-description text-center">
+                            <p>“ doSome ”</p>
+                        </div>
+                        <div class="star-icon text-center">
+
+                        </div>
+                        <div class="client-name text-center">
+                            <h5>Innder</h5>
+                            <p></p>
+                        </div>
+                    </div>
+                    <!-- Client Feedback Text  -->
+                    <div class="client-feedback-text text-center">
+                        <div class="client">
+                            <i class="fa fa-code" aria-hidden="true"></i>
+                        </div>
+                        <div class="client-description text-center">
+                            <p>“ Code, Code, Code ”</p>
+                        </div>
+                        <div class="star-icon text-center">
+
+                        </div>
+                        <div class="client-name text-center" >
+                            <h5 style="font-family: 'Permanent Marker', cursive;">Takhir</h5>
+                            <p style="font-family: 'Permanent Marker', cursive;">Developer</p>
+                        </div>
+                    </div>
+                    <!-- Client Feedback Text  -->
+                    <div class="client-feedback-text text-center">
+                        <div class="client">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="client-description text-center">
+                            <p>“doDomething”</p>
+                        </div>
+                        <div class="star-icon text-center">
+
+                        </div>
+                        <div class="client-name text-center">
+                            <h5 style="font-family: 'Permanent Marker', cursive;">Dima</h5>
+                            <p style="font-family: 'Permanent Marker', cursive;">Developer</p>
+                        </div>
+                    </div>
+                    <!-- Client Feedback Text  -->
+                    <div class="client-feedback-text text-center">
+                        <div class="client">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="client-description text-center">
+                            <p>“ doSomething ”</p>
+                        </div>
+                        <div class="star-icon text-center">
+
+                        </div>
+                        <div class="client-name text-center">
+                            <h5 style="font-family: 'Permanent Marker', cursive;">Sergey</h5>
+                            <p style="font-family: 'Permanent Marker', cursive;">Developer</p>
+                        </div>
+                    </div>
+                    <!-- Client Feedback Text  -->
+                    <div class="client-feedback-text text-center">
+                        <div class="client">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </div>
+                        <div class="client-description text-center">
+                            <p>“ doSomething ”</p>
+                        </div>
+                        <div class="star-icon text-center">
+
+                        </div>
+                        <div class="client-name text-center">
+                            <h5 style="font-family: 'Permanent Marker', cursive;">Ilshat</h5>
+                            <p style="font-family: 'Permanent Marker', cursive;">Developer</p>
+                        </div>
+                    </div>
+                    <div class="client-feedback-text text-center">
+                        <div class="client">
+                            <i class="fab fa-microblog"></i>
+                        </div>
+                        <div class="client-description text-center">
+                            <p>“ doSomething ”</p>
+                        </div>
+                        <div class="star-icon text-center">
+
+                        </div>
+                        <div class="client-name text-center">
+                            <h5 style="font-family: 'Permanent Marker', cursive;">Mikhail</h5>
+                            <p style="font-family: 'Permanent Marker', cursive;">Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Client Thumbnail Area -->
+            <div class="col-12 col-md-6 col-lg-5">
+                <div class="slider slider-nav">
+                    <div class="client-thumbnail">
+                        <img src="images/ind/bg-img/client-13.png" alt="">
+                    </div>
+                    <div class="client-thumbnail">
+                        <img src="images/ind/bg-img/client-11.png" alt="">
+                    </div>
+                    <div class="client-thumbnail">
+                        <img src="images/ind/bg-img/client-14.png" alt="">
+                    </div>
+                    <div class="client-thumbnail">
+                        <img src="images/ind/bg-img/client-12.png" alt="">
+                    </div>
+                    <div class="client-thumbnail">
+                        <img src="images/ind/bg-img/client-155.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Client Feedback Area End ***** -->
+
+<!-- ***** CTA Area Start ***** -->
+
+<!-- ***** CTA Area End ***** -->
+
+<!-- ***** Our Team Area Start ***** -->
+<section class="our-Team-area bg-white section_padding_100_50 clearfix" id="team">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <!-- Heading Text  -->
+                <div class="section-heading">
+                    <h2 style="font-family: 'Permanent Marker', cursive;">Our Team</h2>
+                    <div class="line-shape"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="single-team-member">
+                    <div class="member-image">
+                        <img src="images/ind/bg-img/client-11.png" alt="">
+                        <div class="team-hover-effects">
+                            <!--
+                            <div class="team-social-icon">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="member-text">
+                        <h4 style="font-family: 'Permanent Marker', cursive;">Takhir</h4>
+                        <p style="font-family: 'Permanent Marker', cursive;">Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="single-team-member">
+                    <div class="member-image">
+                        <img src="images/ind/bg-img/client-13.png" alt="">
+                        <div class="team-hover-effects">
+                            <!--
+                            <div class="team-social-icon">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="member-text">
+                        <h4 style="font-family: 'Permanent Marker', cursive;">Mikhail</h4>
+                        <p style="font-family: 'Permanent Marker', cursive;">Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="single-team-member">
+                    <div class="member-image">
+                        <img src="images/ind/bg-img/client-14.png" alt="">
+                        <div class="team-hover-effects">
+                            <!--
+                            <div class="team-social-icon">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="member-text">
+                        <h4 style="font-family: 'Permanent Marker', cursive;">Dima</h4>
+                        <p style="font-family: 'Permanent Marker', cursive;">Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="single-team-member">
+                    <div class="member-image">
+                        <img src="images/ind/bg-img/client-155.png" alt="">
+                        <div class="team-hover-effects">
+                            <!--
+                            <div class="team-social-icon">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="member-text">
+                        <h4 style="font-family: 'Permanent Marker', cursive;">Ilshat</h4>
+                        <p style="font-family: 'Permanent Marker', cursive;">Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <div class="single-team-member">
+                    <div class="member-image">
+                        <img src="images/ind/bg-img/client-12.png" alt="">
+                        <div class="team-hover-effects">
+                            <!--
+                            <div class="team-social-icon">
+                                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                    <div class="member-text">
+                        <h4 style="font-family: 'Permanent Marker', cursive;">Sergey</h4>
+                        <p style="font-family: 'Permanent Marker', cursive;">Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Our Team Area End ***** -->
+
+
+<!-- ***** Footer Area Start ***** -->
+<footer class="footer-social-icon text-center section_padding_70 clearfix">
+    <!-- footer logo -->
+    <div class="footer-text">
+        <h2 style="font-family: 'Permanent Marker', cursive;">Innder</h2>
+    </div>
+    <!-- social icon-->
+    <div class="footer-social-icon">
+        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="#"><i class="active fa fa-twitter" aria-hidden="true"></i></a>
+        <a href="#"> <i class="fa fa-instagram" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+    </div>
+
+    <!-- Foooter Text-->
+    <div class="copyright-text">
+        <!-- ***** Removing this text is now allowed! This template is licensed under CC BY 3.0 ***** -->
+        <p>Copyright ©2019 Innder Designed by Innopolis team</p>
+    </div>
+</footer>
+
+
+<!-- Jquery-2.2.4 JS -->
+<script data-th-src="@{js/ind/jquery-2.2.4.min.js}"></script>
+<!-- Popper js -->
+<script data-th-src="@{js/ind/popper.min.js}"></script>
+<!-- Bootstrap-4 Beta JS -->
+<script data-th-src="@{js/ind/bootstrap.min.js}"></script>
+<!-- All Plugins JS -->
+<script data-th-src="@{js/ind/plugins.js}"></script>
+<!-- Slick Slider Js-->
+<script data-th-src="@{js/ind/slick.min.js}"></script>
+<!-- Footer Reveal JS -->
+
+<!-- Active JS -->
+<script data-th-src="@{js/ind/active.js}"></script>
+
+<!--
 <div>
+
+    <div data-th-include="/fragments/layout :: registerFragment"></div>
+    <div data-th-include="/fragments/layout :: loginFragment"></div>
+    <div data-th-include="/fragments/layout :: logoutFragment"></div>
     <div data-th-include="/fragments/layout :: adminFragment"></div>
 </div>
 
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container">
-        <a class="navbar-brand"><i class="fas fa-gem"></i><span style='padding-left:10px;'> </span><i class="fab fa-linkedin-in"></i><i class="fab fa-neos"></i><i class="fab fa-dochub"></i><span></span>er</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="oi oi-menu"></span> Menu
-        </button>
 
-        <div class="collapse navbar-collapse" id="ftco-nav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a data-th:href="@{/search}"><form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button> <span style='padding-left:10px;'> </span>
-                </form></a></li>  <!-- ?search=value необходимо создать логику -->
-                <li class="nav-item"><a href="/create-route" data-toggle="modal" data-target="#modalAppointment"><input class="btn btn-primary" type="button" value="Предложить поездку"></a></li><span style='padding-left:10px;'> </span>
-                <li class="nav-item"><a data-th-include="/fragments/layout :: registerFragment">Регистрация</a></li></i><span style='padding-left:10px;'> </span>
-                <li class="nav-item"><a data-th-include="/fragments/layout :: loginFragment">Войти</a></li>
-                <li class="nav-item"><a data-th-include="/fragments/layout :: logoutFragment">Выйти</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-                <h1  class="text-primary" style="font-family: Lato">Service on search of fellow travelers</h1>
+
+
+<h1>Главная страница</h1>
+
+-->
 
 
 </body>
