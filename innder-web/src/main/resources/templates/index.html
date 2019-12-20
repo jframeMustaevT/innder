@@ -51,12 +51,11 @@
             <div class="collapse navbar-collapse" id="ftco-nav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a data-th:href="@{/search}"><form class="form-inline my-2 my-lg-3">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти поездку</button> <span style='padding-left:10px;'> </span>
-                    <li class="nav-item"><a  data-toggle="modal" data-target="#modalAppointment"><input class="btn btn-primary" href="http://localhost:80/create-route" type="button" value="Предложить поездку"></a></li><span style='padding-left:10px;'> </span>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" href="http://localhost:80/search-trip">Найти поездку</button> <span style='padding-left:10px;'> </span>
+                    <li class="nav-item"><a  data-toggle="modal" data-target="#modalAppointment"><input class="btn btn-primary" data-th-href="@{http://localhost:80/create-route}" type="button" value="Предложить поездку"></a></li><span style='padding-left:10px;'> </span>
                     <li class="nav-item"><a data-th-include="/fragments/layout :: registerFragment">Регистрация</a></li></i><span style='padding-left:10px;'> </span>
                     <li class="nav-item"><a data-th-include="/fragments/layout :: loginFragment">Войти</a></li>
                     <li class="nav-item"><a data-th-include="/fragments/layout :: logoutFragment">Выйти</a></li>
-
                 </ul>
             </div>
         </div>
@@ -87,8 +86,8 @@
                 <div class="get-start-area">
 
                     <!-- Form Start -->
-                    <form action="#" method="post" class="form-inline">
-                        <input type="submit" class="submit" href="http://localhost:80/search-trip" value="Найти поездку">
+                    <form action="" method="post" class="form-inline" href="http://localhost:80/search-trip">
+                        <input type="submit" class="submit" data-th-href="@{http://localhost:80/search-trip}" value="Найти поездку">
                     </form>
                     <!-- Form End -->
                 </div>

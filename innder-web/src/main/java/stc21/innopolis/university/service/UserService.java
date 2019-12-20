@@ -45,11 +45,11 @@ public class UserService implements UserDetailsService {
     User user = new User(
             0L,
             new ArrayList<Authority>(),
-            "",
+            data.getEmail(),
             data.getUsername(),
             passwordEncoder.encode(data.getPassword()),
             "",
-            "",
+            data.getTelegramName(),
             "",
             UserStatus.ACTIVE,
             "",

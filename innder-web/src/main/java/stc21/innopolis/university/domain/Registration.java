@@ -11,4 +11,6 @@ public class Registration {
   private String username; // в форме должно быть name="username"
   private String password; // в форме должно быть name="password"
   private String confirm; // в форме должно быть name="confirm"
+  private String telegramName;
+  private String email;
 }

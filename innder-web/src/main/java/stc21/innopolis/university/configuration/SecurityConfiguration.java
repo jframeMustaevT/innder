@@ -45,7 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
           .antMatchers("/user/**").hasRole("USER")
 
           // все остальные запросы, которые не подпали под правила должны быть аутентифицированы
-            .anyRequest().authenticated()
+            .anyRequest().permitAll()
         .and()
         .formLogin()
           // куда кидаем после успешного логина

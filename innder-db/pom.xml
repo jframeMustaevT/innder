@@ -45,7 +45,7 @@
                         <phase>initialize</phase>
                         <goals>
                             <!--todo убрать clean после запуска в прод-->
-<!--                            <goal>clean</goal>-->
+                            <goal>clean</goal>
                             <goal>migrate</goal>
                         </goals>
                     </execution>
